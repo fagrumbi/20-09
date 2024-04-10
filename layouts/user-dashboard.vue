@@ -238,10 +238,10 @@
                   aria-haspopup="true">
                   <span class="sr-only">Open user menu</span>
                   <img class="h-8 w-8 rounded-full bg-gray-50"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt="">
+                    :src="user.passport"
+                    alt="profile">
                   <span class="hidden lg:flex lg:items-center">
-                    <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">Tom Cook</span>
+                    <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">{{  user.name ?? 'Nil' }}</span>
                     <svg class="ml-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fill-rule="evenodd"
                         d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
@@ -289,7 +289,8 @@ import Swal from 'sweetalert2/dist/sweetalert2.js'
 export default {
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      user: {},
     }
   },
   methods: {
@@ -312,6 +313,17 @@ export default {
         }
       })
     }
+  },
+  mounted() {
+    const user = window.localStorage.getItem('user')
+    if (user.length) {
+      const result = JSON.parse(user)
+      this.user = result
+    }
+
+    if (user === null) {
+      this.$router.push('/user/login')
+    }
   }
 }
 </script>
@@ -320,10 +332,10 @@ export default {
 .nuxt-link-active {
   font-weight: bold;
 }
+
 /* exact link will show the primary color for only the exact matching link */
 .nuxt-link-exact-active {
   background-color: black;
   color: white;
 }
-
 </style>
