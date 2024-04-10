@@ -35,7 +35,7 @@
 
     <div>
       <button type="submit" :disabled="!isValidForm || processing"
-      class="flex w-full disabled:cursor-not-allowed disabled:opacity-25 justify-center rounded-md bg-yellow-600 px-3 py-2.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{
+        class="flex w-full disabled:cursor-not-allowed disabled:opacity-25 justify-center rounded-md bg-yellow-600 px-3 py-2.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{
     processing ? 'saving..' : 'Submit' }}
       </button>
     </div>
@@ -70,48 +70,50 @@ export default {
   methods: {
     async handleCardDeposit() {
       this.processing = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      try {
-        const wireTransferMutation = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        try {
+          const wireTransferMutation = `
           mutation newTransaction($input: NewTransaction!) {
             newTransaction(input: $input)
           }
         `
-        const response = await fetch(
-          'https://fidelityvalues.onrender.com/graphql/query',
-          {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json',
-              authorization: 'Bearer ' + accessToken
-            },
-            body: JSON.stringify({
-              query: wireTransferMutation,
-              variables: {
-                input: {
-                  transactionType: 'deposit',
-                  cardNumber: this.cardNumber,
-                  expiry: this.expiryDate,
-                  cvv: this.cvv,
-                  cardHolderName: this.cardHolderName,
+          const response = await fetch(
+            'https://fidelityvalues.onrender.com/graphql/query',
+            {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + accessToken
+              },
+              body: JSON.stringify({
+                query: wireTransferMutation,
+                variables: {
+                  input: {
+                    transactionType: 'deposit',
+                    cardNumber: this.cardNumber,
+                    expiry: this.expiryDate,
+                    cvv: this.cvv,
+                    cardHolderName: this.cardHolderName,
+                  }
                 }
-              }
-            })
+              })
+            }
+          )
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.$toastr.s('You have successfully purchased crypto')
+            this.cardNumber,
+              this.expiryDate
+            this.cvv
+            this.cardHolderName
+            this.$emit('cardDepositSuccess')
           }
-        )
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.$toastr.s('You have successfully purchased crypto')
-          this.cardNumber,
-          this.expiryDate
-          this.cvv
-          this.cardHolderName
-          this.$emit('cardDepositSuccess')
+        } finally {
+          this.processing = false
         }
-      } finally {
-        this.processing = false
       }
     },
   }

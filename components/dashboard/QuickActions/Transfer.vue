@@ -83,59 +83,61 @@ export default {
   methods: {
     async handleWireTransfer() {
       this.processing = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      try {
-        const basePayload = {
-          amount: this.form.amount,
-          transactionType: 'withdrawal',
-          beneficiaryName: this.form.beneficiaryName,
-          beneficiaryAccountNumber: this.form.beneficiaryAccountNumber,
-          receivingBankName: this.form.receivingBankName,
-          routingNumber: this.form.routingNumber
-        }
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        try {
+          const basePayload = {
+            amount: this.form.amount,
+            transactionType: 'withdrawal',
+            beneficiaryName: this.form.beneficiaryName,
+            beneficiaryAccountNumber: this.form.beneficiaryAccountNumber,
+            receivingBankName: this.form.receivingBankName,
+            routingNumber: this.form.routingNumber
+          }
 
-        const internalTransferPayload = {
-          amount: this.form.amount,
-          transactionType: 'withdrawal',
-          beneficiaryName: this.form.beneficiaryName,
-          beneficiaryAccountNumber: this.form.beneficiaryAccountNumber
-        }
-        const payload = this.$route.query.page !== 'internal-transfer' ? basePayload : internalTransferPayload
-        const wireTransferMutation = `
+          const internalTransferPayload = {
+            amount: this.form.amount,
+            transactionType: 'withdrawal',
+            beneficiaryName: this.form.beneficiaryName,
+            beneficiaryAccountNumber: this.form.beneficiaryAccountNumber
+          }
+          const payload = this.$route.query.page !== 'internal-transfer' ? basePayload : internalTransferPayload
+          const wireTransferMutation = `
           mutation newTransaction($input: NewTransaction!) {
             newTransaction(input: $input)
           }
         `
-        const response = await fetch(
-          'https://fidelityvalues.onrender.com/graphql/query',
-          {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json',
-              authorization: 'Bearer ' + accessToken
-            },
-            body: JSON.stringify({
-              query: wireTransferMutation,
-              variables: {
-                input: payload
-              }
-            })
+          const response = await fetch(
+            'https://fidelityvalues.onrender.com/graphql/query',
+            {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + accessToken
+              },
+              body: JSON.stringify({
+                query: wireTransferMutation,
+                variables: {
+                  input: payload
+                }
+              })
+            }
+          )
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.$toastr.s(`You have successfully initiated a ${this.$route.query.page === 'wire-transfer' ? 'wire transfer' : this.$route.query.page === 'local-transfer' ? 'Local transfer' : this.$route.query.page === 'internal-transfer' ? 'Internal Transfer' : ''}`)
+            this.form.amount,
+              this.form.beneficiaryName,
+              this.form.beneficiaryAccountNumber,
+              this.form.receivingBankName,
+              this.form.routingNumber
+            this.$emit('transferSuccess')
           }
-        )
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.$toastr.s(`You have successfully initiated a ${this.$route.query.page === 'wire-transfer' ? 'wire transfer' : this.$route.query.page === 'local-transfer' ? 'Local transfer' : this.$route.query.page === 'internal-transfer' ? 'Internal Transfer' : ''}`)
-          this.form.amount,
-            this.form.beneficiaryName,
-            this.form.beneficiaryAccountNumber,
-            this.form.receivingBankName,
-            this.form.routingNumber
-          this.$emit('transferSuccess')
+        } finally {
+          this.processing = false
         }
-      } finally {
-        this.processing = false
       }
     },
   }

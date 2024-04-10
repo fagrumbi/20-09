@@ -70,45 +70,48 @@ export default {
   methods: {
     async handleChequeDeposit() {
       this.processing = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      try {
-        const chequeDepositMutation = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        try {
+          const chequeDepositMutation = `
           mutation newTransaction($input: NewTransaction!) {
             newTransaction(input: $input)
           }
         `
-        const response = await fetch(
-          'https://fidelityvalues.onrender.com/graphql/query',
-          {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json',
-              authorization: 'Bearer ' + accessToken
-            },
-            body: JSON.stringify({
-              query: chequeDepositMutation,
-              variables: {
-                input: {
-                  amount: this.form.amount,
-                  transactionType: 'deposit',
-                  proof: this.form.proof
+          const response = await fetch(
+            'https://fidelityvalues.onrender.com/graphql/query',
+            {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + accessToken
+              },
+              body: JSON.stringify({
+                query: chequeDepositMutation,
+                variables: {
+                  input: {
+                    amount: this.form.amount,
+                    transactionType: 'deposit',
+                    proof: this.form.proof
+                  }
                 }
-              }
-            })
+              })
+            }
+          )
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.$toastr.s('You have successfully initiated a cheque deposit')
+            this.form.amount
+            this.form.proof
+            this.$emit('chequeDepositSuccess')
           }
-        )
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.$toastr.s('You have successfully initiated a cheque deposit')
-          this.form.amount
-          this.form.proof
-          this.$emit('chequeDepositSuccess')
+        } finally {
+          this.processing = false
         }
-      } finally {
-        this.processing = false
       }
+
     },
     handleMeansOfIdentificationUpload(event) {
       const file = event.target.files[0];

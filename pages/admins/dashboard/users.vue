@@ -151,9 +151,10 @@ export default {
     },
     async fetchUsers() {
       this.loading = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      this.loading = true
-      const query = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        this.loading = true
+        const query = `
         query {
           getUsers {
             id
@@ -186,26 +187,27 @@ export default {
           }
         }
       `
-      try {
-        const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            authorization: 'Bearer ' + accessToken
-          },
-          body: JSON.stringify({
-            query
+        try {
+          const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              authorization: 'Bearer ' + accessToken
+            },
+            body: JSON.stringify({
+              query
+            })
           })
-        })
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.usersList = data.data.getUsers
-          this.totalRows = data.data.getUsers.length
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.usersList = data.data.getUsers
+            this.totalRows = data.data.getUsers.length
+          }
+        } finally {
+          this.loading = false
         }
-      } finally {
-        this.loading = false
       }
     },
     getInitials(firstName) {
@@ -217,9 +219,10 @@ export default {
     },
     async updateUserInfo() {
       this.processing = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      try {
-        const updateUserMutation = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        try {
+          const updateUserMutation = `
           mutation updateUser($userId: String!, $input: UpdateUser!) {
             updateUser(userId: $userId, input: $input) {
              btc
@@ -229,37 +232,38 @@ export default {
             }
           }
         `
-        const response = await fetch(
-          'https://visionary-zpui.onrender.com/graphql/query',
-          {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json',
-              authorization: 'Bearer ' + accessToken
-            },
-            body: JSON.stringify({
-              query: updateUserMutation,
-              variables: {
-                userId: this.selectedUser.id ?? '',
-                input: {
-                  btc: this.selectedUser.btc,
-                  eth: this.selectedUser.eth,
-                  accountBalance: this.selectedUser.accountBalance,
-                  tradingBalance: this.selectedUser.tradingBalance
+          const response = await fetch(
+            'https://visionary-zpui.onrender.com/graphql/query',
+            {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + accessToken
+              },
+              body: JSON.stringify({
+                query: updateUserMutation,
+                variables: {
+                  userId: this.selectedUser.id ?? '',
+                  input: {
+                    btc: this.selectedUser.btc,
+                    eth: this.selectedUser.eth,
+                    accountBalance: this.selectedUser.accountBalance,
+                    tradingBalance: this.selectedUser.tradingBalance
+                  }
                 }
-              }
-            })
+              })
+            }
+          )
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.$toastr.s('User Information was updated successfully')
+            this.isModalVisible = false
           }
-        )
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.$toastr.s('User Information was updated successfully')
-          this.isModalVisible = false
+        } finally {
+          this.processing = false
         }
-      } finally {
-        this.processing = false
       }
     },
     previewUser(data) {
@@ -280,9 +284,10 @@ export default {
     },
     async getUserInfo() {
       this.loading = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      this.loading = true
-      const query = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        this.loading = true
+        const query = `
         query {
           getUser {
             id
@@ -326,25 +331,26 @@ export default {
         }
       `
 
-      try {
-        const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            authorization: 'Bearer ' + accessToken
-          },
-          body: JSON.stringify({
-            query
+        try {
+          const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              authorization: 'Bearer ' + accessToken
+            },
+            body: JSON.stringify({
+              query
+            })
           })
-        })
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.selectedUser = data.data.getUser
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.selectedUser = data.data.getUser
+          }
+        } finally {
+          this.loading = false
         }
-      } finally {
-        this.loading = false
       }
     },
   },

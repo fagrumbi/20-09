@@ -36,9 +36,10 @@
                   <span>{{ transaction.user.name ?? 'Nil' }}</span>
                   <span>{{ transaction.user.email ?? 'Nil' }}</span>
                 </td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ transaction.beneficiaryAccountNumber ?? 'Nil' }}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ transaction.beneficiaryAccountNumber ??
+          'Nil' }}</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ transaction.receivingBankName ?? 'Nil'
-                }}</td>
+                  }}</td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ transaction.transactionStatus ?? 'Nil'
                   }}</td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
@@ -96,9 +97,10 @@ export default {
     },
     async fetchTransactions() {
       this.loading = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      this.loading = true
-      const query = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        this.loading = true
+        const query = `
         query {
           getTransactions {
             id
@@ -145,25 +147,26 @@ export default {
         }
       `
 
-      try {
-        const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            authorization: 'Bearer ' + accessToken
-          },
-          body: JSON.stringify({
-            query
+        try {
+          const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              authorization: 'Bearer ' + accessToken
+            },
+            body: JSON.stringify({
+              query
+            })
           })
-        })
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.transactionsList = data.data.getTransactions
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.transactionsList = data.data.getTransactions
+          }
+        } finally {
+          this.loading = false
         }
-      } finally {
-        this.loading = false
       }
     },
     handleAction(data, type) {
@@ -185,39 +188,41 @@ export default {
     },
     async processTransaction(transactionId, status) {
       this.processing = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      const statusType = status === 'approve' ? 'Approved' : status === 'reject' ? 'Declined' : 'Pending'
-      try {
-        const processTransactionQuery = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const statusType = status === 'approve' ? 'Approved' : status === 'reject' ? 'Declined' : 'Pending'
+        try {
+          const processTransactionQuery = `
             mutation ProcessTransaction($transactionID: String!, $status: TransactionStatus!) {
               processTransaction(transactionID: $transactionID, status: $status)
             }
           `
-        const response = await fetch(
-          'https://fidelityvalues.onrender.com/graphql/query',
-          {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json',
-              authorization: 'Bearer ' + accessToken
-            },
-            body: JSON.stringify({
-              query: processTransactionQuery,
-              variables: {
-                transactionID: transactionId,
-                status: statusType
-              }
-            })
+          const response = await fetch(
+            'https://fidelityvalues.onrender.com/graphql/query',
+            {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + accessToken
+              },
+              body: JSON.stringify({
+                query: processTransactionQuery,
+                variables: {
+                  transactionID: transactionId,
+                  status: statusType
+                }
+              })
+            }
+          )
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.$toastr.s(`You have successfully ${status === 'approve' ? 'Approved' : 'Rejected'} this transaction.`)
           }
-        )
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.$toastr.s(`You have successfully ${status === 'approve' ? 'Approved' : 'Rejected'} this transaction.`)
+        } finally {
+          this.processing = false
         }
-      } finally {
-        this.processing = false
       }
     },
   },

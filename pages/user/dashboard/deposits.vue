@@ -154,9 +154,10 @@ export default {
     },
     async fetchTransactions() {
       this.loading = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      this.loading = true
-      const query = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        this.loading = true
+        const query = `
         query {
           getUsersTransactions {
             id
@@ -203,30 +204,31 @@ export default {
         }
       `
 
-      try {
-        const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            authorization: 'Bearer ' + accessToken
-          },
-          body: JSON.stringify({
-            query
+        try {
+          const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              authorization: 'Bearer ' + accessToken
+            },
+            body: JSON.stringify({
+              query
+            })
           })
-        })
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          let result = data.data.getUsersTransactions
-          this.transactionsList = result.filter(transaction => transaction.transactionType === 'deposit')
-          const dates = this.transactionsList.map(transaction => new Date(transaction.timeAdded))
-          const earliestDate = new Date(Math.min.apply(null, dates))
-          const mostRecentDate = new Date(Math.max.apply(null, dates))
-          this.depositsDateRange = `Withdrawals from ${earliestDate.toISOString().split('T')[0]} to ${mostRecentDate.toISOString().split('T')[0]}`
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            let result = data.data.getUsersTransactions
+            this.transactionsList = result.filter(transaction => transaction.transactionType === 'deposit')
+            const dates = this.transactionsList.map(transaction => new Date(transaction.timeAdded))
+            const earliestDate = new Date(Math.min.apply(null, dates))
+            const mostRecentDate = new Date(Math.max.apply(null, dates))
+            this.depositsDateRange = `Withdrawals from ${earliestDate.toISOString().split('T')[0]} to ${mostRecentDate.toISOString().split('T')[0]}`
+          }
+        } finally {
+          this.loading = false
         }
-      } finally {
-        this.loading = false
       }
     },
     formatDateTime(date) {
@@ -253,4 +255,3 @@ export default {
   },
 }
 </script>
-

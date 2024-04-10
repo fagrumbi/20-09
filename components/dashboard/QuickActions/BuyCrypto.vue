@@ -40,44 +40,46 @@ export default {
   methods: {
     async handleBuyCrypto() {
       this.processing = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      try {
-        const wireTransferMutation = `
+      if (process.client) {
+        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        try {
+          const wireTransferMutation = `
           mutation newTransaction($input: NewTransaction!) {
             newTransaction(input: $input)
           }
         `
-        const response = await fetch(
-          'https://fidelityvalues.onrender.com/graphql/query',
-          {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json',
-              authorization: 'Bearer ' + accessToken
-            },
-            body: JSON.stringify({
-              query: wireTransferMutation,
-              variables: {
-                input: {
-                  amount: this.form.amount,
-                  wallet: this.form.wallet,
-                  transactionType: 'withdrawal'
+          const response = await fetch(
+            'https://fidelityvalues.onrender.com/graphql/query',
+            {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + accessToken
+              },
+              body: JSON.stringify({
+                query: wireTransferMutation,
+                variables: {
+                  input: {
+                    amount: this.form.amount,
+                    wallet: this.form.wallet,
+                    transactionType: 'withdrawal'
+                  }
                 }
-              }
-            })
+              })
+            }
+          )
+          const data = await response.json()
+          if (data?.errors) {
+            this.$toastr.e(data.errors[0].message)
+          } else {
+            this.$toastr.s('You have successfully purchased crypto')
+            this.form.amount,
+              this.form.wallet
+            this.$emit('cryptoPurchaseSuccess')
           }
-        )
-        const data = await response.json()
-        if (data?.errors) {
-          this.$toastr.e(data.errors[0].message)
-        } else {
-          this.$toastr.s('You have successfully purchased crypto')
-          this.form.amount,
-          this.form.wallet
-          this.$emit('cryptoPurchaseSuccess')
+        } finally {
+          this.processing = false
         }
-      } finally {
-        this.processing = false
       }
     },
   },
