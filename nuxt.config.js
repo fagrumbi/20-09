@@ -19,16 +19,42 @@ export default {
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    script: [
+      {
+        id: 'tidobot',
+        src: '/js/chatbot.js'
+      },
+      {
+        id: 'tido',
+        src: 'https://code.tidio.co/csbhyanzc4a0vgpoavxf7rj0xe7hr0j5.js'
+      },
+      {
+        src: 'https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js'
+      },
+      {
+        id: 'tradingview',
+        src: 'https://www.cryptohopper.com/widgets/js/script'
+      }
+    ]
   },
+
+  // <script src="//code.tidio.co/csbhyanzc4a0vgpoavxf7rj0xe7hr0j5.js" async></script>
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["@/assets/css/main.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/toastr.js', mode: 'client' },
+    '~/plugins/csv-downloader.js'
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
+  axios: {
+    // proxy: true,
+    baseURL: ''
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -37,7 +63,33 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/toast',
+    '@nuxtjs/axios',
+    [
+      'nuxt-sweetalert2',
+      {
+        confirmButtonColor: '#000000'
+      }
+    ]
+  ],
+  sweetalert: {
+    confirmButtonColor: '#41b882',
+    cancelButtonColor: '#ff7674'
+  },
+  toast: {
+    position: 'top-center',
+    register: [
+      // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      }
+    ]
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -47,5 +99,17 @@ export default {
         autoprefixer: {},
       },
     },
+  },
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: ''
+    },
+    graphql: {
+      clients: {
+        default: {
+          endpoint: 'https://visionary-zpui.onrender.com/graphql/query'
+        }
+      }
+    }
   },
 };
