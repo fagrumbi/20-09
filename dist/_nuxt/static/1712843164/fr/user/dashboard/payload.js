@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/fr/user/dashboard", {data:[{}],fetch:{},mutations:void 0});
