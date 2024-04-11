@@ -198,7 +198,18 @@ export default {
       {
         confirmButtonColor: '#000000'
       }
-    ]
+    ],
+    ['nuxt-i18n', {
+      locales: [
+        { code: 'en', name: 'English', iso: 'en-US', file: 'en-US.js' },
+        { code: 'fr', name: 'Français', iso: 'fr-FR', file: 'fr-FR.js' },
+        { code: 'es', name: 'Español', iso: 'es-ES', file: 'es-ES.js' }
+        // Add more languages here
+      ],
+      lazy: true,
+      langDir: 'lang/',
+      defaultLocale: 'en',
+    }]
   ],
   sweetalert: {
     confirmButtonColor: '#41b882',

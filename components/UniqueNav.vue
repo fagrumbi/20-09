@@ -881,6 +881,9 @@ export default {
         this.isEmailValid = false;
       }
     },
+    switchLanguage(event) {
+      this.$i18n.setLocale(event.target.value);
+    }
   },
   computed: {
     computedArray() {

@@ -31,7 +31,8 @@
           <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
             <img src="https://bastionbanks.com/templates/bank-pro/icons/footer-icons/call-citadel-credit-union.svg"
             class="h-10 w-10" />
-            support@bastionbanks.com</h3>
+            <a href="mailto:support@bastonsbanks.com">support@bastonsbanks.com</a>
+          </h3>
           <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
             <p>Customer Service</p>
           </address>
