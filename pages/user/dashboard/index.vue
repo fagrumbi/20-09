@@ -3,7 +3,7 @@
     <SlideOver :showSideOver="showSideOver" @close="closeSlideOver" v-if="showSideOver" />
     <Statistics :userData="userData" />
     <div class="lg:flex gap-x-6 mt-10 z-50">
-      <div class="rounded-md w-full border-[0.6px] p-6 bg-white shadow">
+      <div class="rounded-md hidden lg:block w-full border-[0.6px] p-6 bg-white shadow">
         <div class="border-b py-6 border-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <button
             class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
@@ -64,6 +64,62 @@
             <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Cheque Deposit</p>
           </button>
         </div>
+      </div>
+      <div class="rounded-md lg:hidden grid grid-cols-2 gap-8 w-full border-[0.6px] p-6 bg-white shadow">
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedAction('wire-transfer')">
+          <img src="@/assets/img/transfer2.png" alt="" class="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Wire Transfer</p>
+        </button>
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedAction('local-transfer')">
+          <img src="@/assets/img/transfer2.png" alt="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Local Transfer</p>
+        </button>
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedAction('internal-transfer')">
+          <img src="@/assets/img/transfer2.png" alt="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Internal Transfer</p>
+        </button>
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedAction('buy-crypto')">
+          <img src="@/assets/img/crypto.png" alt="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Buy Crypto</p>
+        </button>
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedExceptionAction('pay-bills')">
+          <img src="@/assets/img/bills.png" alt="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Pay Bills</p>
+        </button>
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedExceptionAction('add-beneficiary')">
+          <img src="@/assets/img/beneficiary.png" alt="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Add Beneficiary</p>
+        </button>
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedAction('card-deposit')">
+          <img src="@/assets/img/card-deposit.png" alt="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Card Deposit</p>
+        </button>
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedAction('crypto-deposit')">
+          <img src="@/assets/img/crypto-deposit.png" alt="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Crypto Deposit</p>
+        </button>
+        <button
+          class="flex group justify-center items-center flex-col border-[0.6px] border-gray-300 py-2.5 shadow rounded-md hover:bg-green-300"
+          @click="handleSelectedAction('cheque-deposit')">
+          <img src="@/assets/img/card-deposit.png" alt="" />
+          <p class="font-semibold text-gray-600 text-sm group-hover:text-gray-400">Cheque Deposit</p>
+        </button>
       </div>
       <!-- <div class="lg:w-4/12 border-[0.6px] rounded-md p-4 space-y-6">
         <div class="font-medium text-sm py-3 border-b border-gray-300">Your Account Debit</div>
@@ -131,6 +187,36 @@ import Statistics from '@/components/dashboard/Statistics.vue'
 import SlideOver from '@/components/core/SlideOver.vue'
 export default {
   layout: 'user-dashboard',
+  head() {
+    return {
+      title: 'Bastons Banks | User Dashboard',
+      meta: [
+        // Standard meta tags
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
+        // SEO meta tags
+        { hid: 'description', name: 'description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'keywords', name: 'keywords', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+
+        // Open Graph / Facebook meta tags for rich sharing
+        { hid: 'og:title', property: 'og:title', content: 'Bastons Banks | User Dashboard' },
+        { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/user/dashboard' },
+        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+
+        // Twitter Card meta tags
+        { hid: 'twitter:card', name: 'twitter:card', content: '' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | User Dashboard' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   components: {
     SlideOver,
     Statistics,
@@ -183,7 +269,7 @@ export default {
     },
     async getUserInfo() {
       this.loading = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+      const accessToken = JSON.parse(sessionStorage.getItem('auth'))
       this.loading = true
       const query = `
         query {

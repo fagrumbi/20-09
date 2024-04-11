@@ -2,13 +2,14 @@
   <main>
     <div class="relative">
       <nav class="bg-gray-800 sticky top-0 py-3 z-50 hidden lg:block">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
               <div class="flex-shrink-0">
                 <!-- <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                 alt="Your Company"> -->
-                <img src="https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png" alt="Company Logo" />
+                <nuxt-link to="/"><img src="https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png"
+                    alt="Company Logo" class="" /></nuxt-link>
               </div>
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
@@ -24,12 +25,17 @@
 
                 <!-- Profile dropdown -->
                 <div class="relative ml-3">
-                  <div>
-                    <nuxt-link to="/user/login"
-                      class="relative flex rounded-full py-2.5 px-2 bg-green-600 text-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  <div class="flex items-center gap-x-4">
+                    <nuxt-link to="/user/signup"
+                      class="relative flex rounded-md py-2.5 px-2 bg-green-600 text-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                      <span class="">Create Account</span>
+                    </nuxt-link>
+                    <button @click="isModalVisible = true"
+                      class="relative flex rounded-md py-2.5 px-6 bg-green-600 text-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                       <span class="">Login</span>
-                    </nuxt-link>
+                    </button>
                   </div>
                   <div v-if="false"
                     class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -182,7 +188,7 @@
                   <li>
                     <ul role="list" class="-mx-2 space-y-3">
                       <li>
-                        <a href="#"
+                        <nuxt-link to="/"
                           class="bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-700">
                           <svg class="h-6 w-6 shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" aria-hidden="true">
@@ -190,7 +196,7 @@
                               d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                           </svg>
                           {{ navigationBarList[0].name }}
-                        </a>
+                        </nuxt-link>
                       </li>
                       <li v-for="(itm, index) in navigationBarList" :key="index">
                         <div v-if="itm?.subMenu?.length">
@@ -471,36 +477,31 @@
             <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-blue-700">Login</h2>
           </nuxt-link>
 
-          <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-            <form class="space-y-6 p-4" action="#" method="POST">
+          <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-[480px]">
+            <form class="space-y-6 p-4" @submit.prevent="handleLogin">
               <div>
-                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Account ID</label>
+                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email Address</label>
                 <div class="mt-2">
-                  <input id="email" name="email" type="email" autocomplete="email" required
+                  <input id="email" v-model="form.email" name="email" type="email"
                     class="block w-full rounded-md border-0 py-2.5 px-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
+                <span v-if="!isEmailValid" class="text-xs text-red-500 font-medium">Please enter a valid email
+                  address</span>
               </div>
 
               <div>
                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                 <div class="mt-2">
-                  <input id="password" name="password" type="password" autocomplete="current-password" required
+                  <input id="password" v-model="form.password" name="password" type="password"
                     class="block w-full rounded-md border-0 py-2.5 px-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
               </div>
 
-              <div class="flex items-center justify-between">
-                <div class="text-sm leading-6">
-                  Forgot password?
-                  <nuxt-link to="/contact-us" class="font-semibold text-indigo-600 hover:text-indigo-500">Contact
-                    support</nuxt-link>
-                </div>
-              </div>
-
               <div>
-                <nuxt-link to="/user/login"
-                  class="flex w-full justify-center rounded-md bg-yellow-600 px-3 py-2.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign
-                  in</nuxt-link>
+                <button type="submit" :disabled="!isFormEmpty || processing"
+                  class="flex w-full justify-center rounded-md bg-yellow-600 disabled:cursor-not-allowed disabled:opacity-25 px-3 py-2.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                  {{ processing ? 'processing..' : 'Sign in'}}
+                </button>
               </div>
             </form>
           </div>
@@ -518,6 +519,13 @@ export default {
   },
   data() {
     return {
+      form: {
+        email: "",
+        password: "",
+      },
+      processing: false,
+      isEmailValid: true,
+      showPassword: false,
       activeMenu: '',
       isDropOpen: [true],
       isModalVisible: false,
@@ -779,12 +787,117 @@ export default {
     navigateHome() {
       this.$router.push('/')
       this.isOpen = !this.isOpen
-    }
+    },
+    async handleLogin() {
+      this.processing = true;
+      const loginMutation = `
+        mutation {
+          userLogin(email: "${this.form.email}", password: "${this.form.password}") {
+            jwt
+            user {
+              id
+              name
+              email
+              role
+              phoneNumber
+              dob
+              gender
+              ssn
+              occupation
+              country
+              city
+              zip
+              address
+              accountCurrency
+              pin
+              passport
+              identification
+              Status
+              PlanType
+              accountBalance
+              cardBalance
+              cardNumber
+              expiry
+              cvv
+              eth
+              btc
+              timeAdded
+              admin {
+                id
+                email
+                role
+                Status
+                timeAdded
+                btc
+                eth
+                name
+              }
+            }
+          }
+        }
+      `;
+      try {
+        const response = await fetch(
+          "https://fidelityvalues.onrender.com/graphql/query",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              query: loginMutation,
+              variables: {
+                email: this.form.email,
+                password: this.form.password,
+              },
+            }),
+          }
+        );
+        const data = await response.json();
+        if (data?.errors) {
+          this.$toastr.e(data.errors[0].message);
+        } else {
+          if (process.client) {
+            sessionStorage.setItem(
+              "auth",
+              JSON.stringify(data?.data?.userLogin?.jwt)
+            );
+            sessionStorage.setItem(
+              "user",
+              JSON.stringify(data?.data?.userLogin?.user)
+            );
+          }
+          this.$toastr.s("Login was successful");
+          this.$router.push("/user/dashboard");
+        }
+      } finally {
+        this.processing = false;
+      }
+    },
+    validateEmail(value) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+        this.isEmailValid = true;
+      } else {
+        this.isEmailValid = false;
+      }
+    },
   },
   computed: {
     computedArray() {
       return this.navigationBarList.shift(); // Removes the first element from the array
+    },
+    isFormEmpty() {
+      return !!(this.form.email && this.form.password);
+    },
+    eye() {
+      return !this.showPassword ? 'eye-close.svg' : 'eye-open.svg'
     }
+  },
+  watch: {
+    "form.email"(value) {
+      this.form.email = value;
+      this.validateEmail(value);
+    },
   }
 };
 </script>

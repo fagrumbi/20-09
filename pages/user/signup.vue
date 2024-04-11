@@ -19,7 +19,7 @@
           <div>
             <form @submit.prevent="handleSubmit" class="space-y-6">
               <div>
-                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
                 <div class="mt-2">
                   <input id="name" name="name" type="text" v-model="form.name"
                     class="block w-full px-3 rounded-md border-0 py-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
@@ -265,6 +265,36 @@
 <script>
 export default {
   layout: "admin-auth",
+  head() {
+    return {
+      title: 'Bastons Banks | User Signup',
+      meta: [
+        // Standard meta tags
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
+        // SEO meta tags
+        { hid: 'description', name: 'description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'keywords', name: 'keywords', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+
+        // Open Graph / Facebook meta tags for rich sharing
+        { hid: 'og:title', property: 'og:title', content: 'Bastons Banks | User Signup' },
+        { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/user/signup' },
+        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+
+        // Twitter Card meta tags
+        { hid: 'twitter:card', name: 'twitter:card', content: '' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | User Signup' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   data() {
     return {
       processing: false,
@@ -466,14 +496,16 @@ export default {
         if (data?.errors) {
           this.$toastr.e(data.errors[0].message);
         } else {
-          window.localStorage.setItem(
-            "auth",
-            JSON.stringify(data?.data?.newUser?.jwt)
-          );
-          window.localStorage.setItem(
-            "user",
-            JSON.stringify(data?.data?.newUser?.user)
-          );
+          if (process.client) {
+            sessionStorage.setItem(
+              "auth",
+              JSON.stringify(data?.data?.newUser?.jwt)
+            );
+            sessionStorage.setItem(
+              "user",
+              JSON.stringify(data?.data?.newUser?.user)
+            );
+          }
           this.$toastr.s("Signup was successful");
           this.$router.push("/user/login");
         }

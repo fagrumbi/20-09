@@ -9,9 +9,9 @@
         <div class="flex justify-between">
           <div class="">
             <p class="font-light">
-              Name
+              Full Name
             </p>
-            <p class="font-medium tracking-widest">
+            <p class="font-medium tracking-widest uppercase">
               {{ userData.name || 'Nil' }}
             </p>
           </div>
@@ -29,29 +29,29 @@
           <div class="flex justify-between">
             <div class="">
               <p class="font-light text-xs">
-                Valid
-              </p>
-              <p class="font-medium tracking-wider text-sm">
-                11/15
-              </p>
-            </div>
-            <div class="">
-              <h1 class="font-light text-xs text-xs">
                 Expiry
-              </h1>
+              </p>
               <p class="font-medium tracking-wider text-sm">
                 {{ userData.expiry || 'Nil' }}
               </p>
             </div>
-
             <div class="">
+              <h1 class="font-light text-xs text-xs">
+                CVV
+              </h1>
+              <p class="font-medium tracking-wider text-sm">
+                {{ userData.cvv || 'Nil' }}
+              </p>
+            </div>
+
+            <!-- <div class="">
               <h1 class="font-light text-xs">
                 CVV
               </h1>
               <p class="font-bold tracking-more-wider text-sm">
                 {{ userData.cvv || 'Nil' }}
               </p>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

@@ -84,7 +84,7 @@ export default {
     async handleWireTransfer() {
       this.processing = true
       if (process.client) {
-        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const accessToken = JSON.parse(sessionStorage.getItem('auth'))
         try {
           const basePayload = {
             amount: this.form.amount,

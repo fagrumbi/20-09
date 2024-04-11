@@ -120,7 +120,7 @@ export default {
     async fetchAdminStats() {
       this.loading = true
       if (process.client) {
-        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const accessToken = JSON.parse(sessionStorage.getItem('auth'))
         this.loading = true
         const query = `
         query {

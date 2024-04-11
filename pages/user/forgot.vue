@@ -61,6 +61,36 @@
 <script>
 export default {
   layout: 'admin-auth',
+  head() {
+    return {
+      title: 'Bastons Banks | User Forgot Password',
+      meta: [
+        // Standard meta tags
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
+        // SEO meta tags
+        { hid: 'description', name: 'description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'keywords', name: 'keywords', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+
+        // Open Graph / Facebook meta tags for rich sharing
+        { hid: 'og:title', property: 'og:title', content: 'Bastons Banks | User Forgot Password' },
+        { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/user/forgot' },
+        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+
+        // Twitter Card meta tags
+        { hid: 'twitter:card', name: 'twitter:card', content: '' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | User Forgot Password' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   data() {
     return {
       processing: false,
@@ -77,7 +107,7 @@ export default {
   },
   mounted() {
     if (window.process) {
-      const user = window.localStorage.getItem('user')
+      const user = sessionStorage.getItem('user')
       const parsedUser = JSON.parse(user)
       if (Object.keys(parsedUser)?.length) {
         this.$router.push('/user/login')
@@ -112,7 +142,9 @@ export default {
           this.$toastr.e(data.errors[0].message)
         } else {
           this.token_sent = true
-          window.localStorage.setItem('user-email', JSON.stringify(this.form.email))
+          if (process.client) {
+            sessionStorage.setItem('user-email', JSON.stringify(this.form.email))
+          }
         }
       } finally {
         this.processing = false

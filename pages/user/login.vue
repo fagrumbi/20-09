@@ -26,12 +26,12 @@
                 password?</nuxt-link>
             </div>
           </div>
-          <div class="mt-2">
-            <input id="password" v-model="form.password" name="password" type="password" autocomplete="current-password"
-              required
+          <div class="mt-2 relative">
+            <input id="password" v-model="form.password" name="password" :type="showPassword ? 'text' : 'password'"
+              autocomplete="current-password" required
               class="block py-3 px-3 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             <img @click="showPassword = !showPassword" :src="require(`@/assets/icons/${eye}`)" alt=""
-              class="absolute cursor-pointer top-9 right-4 h-6 w-6">
+              class="absolute cursor-pointer top-2 right-4 h-6 w-6">
           </div>
         </div>
 
@@ -55,6 +55,36 @@
 <script>
 export default {
   layout: "admin-auth",
+  head() {
+    return {
+      title: 'Bastons Banks | User Login',
+      meta: [
+        // Standard meta tags
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
+        // SEO meta tags
+        { hid: 'description', name: 'description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'keywords', name: 'keywords', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+
+        // Open Graph / Facebook meta tags for rich sharing
+        { hid: 'og:title', property: 'og:title', content: 'Bastons Banks | User Login' },
+        { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/user/login' },
+        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+
+        // Twitter Card meta tags
+        { hid: 'twitter:card', name: 'twitter:card', content: '' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | User Login' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   data() {
     return {
       processing: false,
@@ -150,14 +180,16 @@ export default {
         if (data?.errors) {
           this.$toastr.e(data.errors[0].message);
         } else {
-          window.localStorage.setItem(
-            "auth",
-            JSON.stringify(data?.data?.userLogin?.jwt)
-          );
-          window.localStorage.setItem(
-            "user",
-            JSON.stringify(data?.data?.userLogin?.user)
-          );
+          if (process.client) {
+            sessionStorage.setItem(
+              "auth",
+              JSON.stringify(data?.data?.userLogin?.jwt)
+            );
+            sessionStorage.setItem(
+              "user",
+              JSON.stringify(data?.data?.userLogin?.user)
+            );
+          }
           this.$toastr.s("Login was successful");
           this.$router.push("/user/dashboard");
         }
@@ -175,7 +207,7 @@ export default {
   },
   mounted() {
     if (window.process) {
-      const user = window.localStorage.getItem('user')
+      const user = sessionStorage.getItem('user')
       const parsedUser = JSON.parse(user)
       if (Object.keys(parsedUser)?.length) {
         this.$router.push('/user/dashboard')

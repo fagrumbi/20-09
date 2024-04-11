@@ -8,8 +8,7 @@
         </div>
         <div class="">
           <div>
-            <form v-if="Object.keys(updatedUserData).length && !loading" class="p-6 lg:p-10 space-y-6 max-w-xl"
-              @submit.prevent="updateUser">
+            <form class="p-6 lg:p-10 space-y-6 max-w-xl" @submit.prevent="updateUser">
               <div class="space-y-1">
                 <label class="text-xs text-gray-700 font-medium">First Name</label>
                 <input v-model="updatedUserData.name" type="text"
@@ -156,10 +155,18 @@
               </div>
 
               <div>
-                <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Passport
-                  Photograph</label>
-                  <img v-if="updatedUserData.passport.length" class="h-32 w-32" :src="updatedUserData.passport"
-                  style="max-width: 100%; max-height: 500px" />
+                <div class="flex justify-between items-center">
+                  <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Passport
+                    Photograph</label>
+                  <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+                  <!-- Toggle Button -->
+                  <button type="button" @click="toggleVisibility"
+                    class="px-4 py-2 text-sm text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                    {{ isUpdatePassport ? 'Hide' : 'Show' }} update
+                  </button>
+                </div>
+                <img v-if="updatedUserData.passport.length && !isUpdatePassport" class="h-32 w-32"
+                  :src="updatedUserData.passport" style="max-width: 100%; max-height: 500px" />
                 <div v-else class="mt-2">
                   <div class="col-span-full" v-if="!passportFilePreview">
                     <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
@@ -191,16 +198,23 @@
                   <iframe v-if="isPdf && passportFilePreview" :src="passportFilePreview"
                     style="width: 100%; height: 500px"></iframe>
                   <img v-if="!isPdf && passportFilePreview" :src="passportFilePreview"
-                    style="max-width: 100%; max-height: 500px" />
+                    style="max-width: 100%; max-height: 500px"
+                    class="h-32 w-32 rounded-lg object-cover object-center" />
                 </div>
               </div>
 
               <div>
-                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Means of
-                  Identification</label>
-                <img v-if="updatedUserData.identification.length" class="h-32 w-32" :src="updatedUserData.identification"
-                  style="max-width: 100%; max-height: 500px" />
-                <div v-else class="mt-2">
+                <div class="flex justify-between items-center">
+                  <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Means of
+                    Identification</label>
+                  <button type="button" @click="toggleIdentificationUpdate"
+                    class="px-4 py-2 text-sm text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                    {{ isIdentificationUpdate ? 'Hide' : 'Show' }} update
+                  </button>
+                </div>
+                <img v-if="updatedUserData.identification.length && !isIdentificationUpdate" class="h-32 w-32"
+                  :src="updatedUserData.passport" style="max-width: 100%; max-height: 500px" />
+                <div class="mt-2" v-else>
                   <div class="col-span-full" v-if="!identificationFilePreview">
                     <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                       <div class="text-center">
@@ -234,20 +248,12 @@
                     style="max-width: 100%; max-height: 500px" />
                 </div>
               </div>
-
-
-
               <div class="w-full">
-                <button class="bg-green-500 w-full text-white rounded-lg px-6 py-3 text-sm">
+                <button :disabled="processing" type="submit" class="bg-green-500 w-full disabled:cursor-not-allowed disabled:opacity-25 text-white rounded-lg px-6 py-3 text-sm">
                   {{ processing ? 'processing...' : 'Update' }}
                 </button>
               </div>
             </form>
-            <div v-else-if="loading && !transactionsList?.length"
-              class="bg-white rounded-lg shadow-md p-4 animate-pulse">
-              <div class="w-full h-32 bg-gray-300 rounded mb-2"></div>
-            </div>
-            <EmptyState title="No Withdrawals available" desc="Please perform a withdrawal transaction" v-else />
           </div>
         </div>
       </div>
@@ -265,11 +271,43 @@
 import EmptyState from '@/components/core/EmptyState.vue'
 export default {
   layout: "user-dashboard",
+  head() {
+    return {
+      title: 'Bastons Banks | User Dashboard',
+      meta: [
+        // Standard meta tags
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
+        // SEO meta tags
+        { hid: 'description', name: 'description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'keywords', name: 'keywords', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+
+        // Open Graph / Facebook meta tags for rich sharing
+        { hid: 'og:title', property: 'og:title', content: 'Bastons Banks | User Dashboard' },
+        { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/user/dashboard/profile-update' },
+        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+
+        // Twitter Card meta tags
+        { hid: 'twitter:card', name: 'twitter:card', content: '' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | User Dashboard' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   components: {
     EmptyState
   },
   data() {
     return {
+      isUpdatePassport: false,
+      isIdentificationUpdate: false,
       processing: false,
       isPersonalEmailValid: true,
       identificationFilePreview: "",
@@ -305,8 +343,8 @@ export default {
   methods: {
     async updateUser() {
       this.processing = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
-      const user = JSON.parse(window.localStorage.getItem('user'))
+      const accessToken = JSON.parse(sessionStorage.getItem('auth'))
+      const user = JSON.parse(sessionStorage.getItem('user'))
       try {
         const updateUserMutation = `
           mutation updateUser($userId: String!, $input: UpdateUser!) {
@@ -360,7 +398,7 @@ export default {
                   accountCurrency: this.updatedUserData.accountCurrency,
                   pin: this.updatedUserData.pin,
                   passport: this.updatedUserData.passport,
-                  identification: this.updatedUserData.identification,
+                  // identification: this.updatedUserData.identification,
                   eth: this.updatedUserData.eth,
                   btc: this.updatedUserData.btc,
                   accountBalance: this.updatedUserData.accountBalance,
@@ -383,7 +421,7 @@ export default {
     },
     async getUserInfo() {
       this.loading = true
-      const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+      const accessToken = JSON.parse(sessionStorage.getItem('auth'))
       this.loading = true
       const query = `
         query {
@@ -450,6 +488,84 @@ export default {
         this.loading = false
       }
     },
+    handlePassportUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        if (file.size > 5242880) {
+          // 5MB in bytes
+          this.profileError =
+            "File is too large. Please upload a file smaller than 5MB.";
+          return;
+        }
+
+        this.profileError = null; // Reset error message
+        const fileType = file.type;
+        this.isPdf = fileType === "application/pdf";
+
+        // Check if the file type is supported
+        if (
+          this.isPdf ||
+          fileType === "image/png" ||
+          fileType === "image/jpeg" ||
+          fileType === "image/gif"
+        ) {
+          const reader = new FileReader();
+
+          reader.onload = () => {
+            this.form.passport = reader.result;
+          };
+          reader.readAsDataURL(file);
+          // Generate a URL for the file
+          this.passportFilePreview = URL.createObjectURL(file);
+          // this.form.passport = URL.createObjectURL(file);
+        } else {
+          this.profileError =
+            "Unsupported file type. Please upload a PDF, PNG, JPG, or GIF file.";
+        }
+      }
+    },
+    handleMeansOfIdentificationUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        if (file.size > 5242880) {
+          // 5MB in bytes
+          this.docfileError =
+            "File is too large. Please upload a file smaller than 5MB.";
+          return;
+        }
+
+        this.docfileError = null; // Reset error message
+        const fileType = file.type;
+        this.isPdf = fileType === "application/pdf";
+
+        // Check if the file type is supported
+        if (
+          this.isPdf ||
+          fileType === "image/png" ||
+          fileType === "image/jpeg" ||
+          fileType === "image/gif"
+        ) {
+          // Generate a URL for the file
+          this.identificationFilePreview = URL.createObjectURL(file);
+          // this.form.identification = URL.createObjectURL(file);
+          const reader = new FileReader();
+
+          reader.onload = () => {
+            this.form.identification = reader.result;
+          };
+          reader.readAsDataURL(file);
+        } else {
+          this.docfileError =
+            "Unsupported file type. Please upload a PDF, PNG, JPG, or GIF file.";
+        }
+      }
+    },
+    toggleVisibility() {
+      this.isUpdatePassport = !this.isUpdatePassport; // Toggle the state
+    },
+    toggleIdentificationUpdate() {
+      this.isIdentificationUpdate = !this.isIdentificationUpdate
+    }
   },
   mounted() {
     this.getUserInfo()

@@ -1,5 +1,5 @@
 <template>
-  <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
+  <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 overflow-x-visible lg:grid-cols-3 xl:gap-x-8">
     <li class="overflow-hidden rounded-xl border border-gray-200">
       <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
         <img src="@/assets/img/current-balance.png" alt="Tuple"
@@ -19,7 +19,9 @@
       <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
         <div class="flex justify-between gap-x-4 py-3">
           <dt class="text-gray-500">Last balance</dt>
-          <dd class="text-gray-700"><time datetime="2022-12-13">{{ userData.accountBalance ?? 'Nil' }}</time></dd>
+          <dd class="text-gray-700"><time datetime="2022-12-13">
+              {{ userData.accountCurrency ?? 'Nil' }}
+              {{ formatNumber(userData.accountBalance) ?? 'Nil' }}</time></dd>
         </div>
         <div class="flex justify-between gap-x-4 py-3">
           <dt class="text-gray-500">Currency</dt>
@@ -44,15 +46,23 @@
             </svg>
           </button>
         </div>
+
       </div>
       <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
         <div class="flex justify-between gap-x-4 py-3">
           <dt class="text-gray-500">Last balance</dt>
-          <dd class="text-gray-700"><time datetime="2023-01-22">{{ userData.cardBalance ?? 'Nil' }}</time></dd>
+          <dd class="text-gray-700"><time datetime="2023-01-22">
+              {{ userData.accountCurrency ?? 'Nil' }}
+              {{ formatNumber(userData.cardBalance) ?? 'Nil' }}
+            </time></dd>
+        </div>
+        <div class="flex justify-between gap-x-4 py-3">
+          <dt class="text-gray-500">Currency</dt>
+          <dd class="text-gray-700"><time datetime="2023-01-22">{{ userData.accountCurrency ?? 'Nil' }}</time></dd>
         </div>
       </dl>
     </li>
-    <li class="overflow-hidden rounded-xl border border-gray-200">
+    <li class="overflow-hidden rounded-xl border border-gray-200 mr-[-20px]">
       <DebitCard :userData="userData" class="" />
     </li>
   </ul>
@@ -70,6 +80,11 @@ export default {
       type: Object,
       default: {}
     }
+  },
+  methods: {
+    formatNumber(number) {
+      return number?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    },
   }
 }
 </script>

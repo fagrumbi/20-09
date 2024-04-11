@@ -71,7 +71,7 @@ export default {
     async handleChequeDeposit() {
       this.processing = true
       if (process.client) {
-        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const accessToken = JSON.parse(sessionStorage.getItem('auth'))
         try {
           const chequeDepositMutation = `
           mutation newTransaction($input: NewTransaction!) {

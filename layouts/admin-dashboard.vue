@@ -27,8 +27,8 @@
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
                   <li>
                     <ul role="list" class="-mx-2 space-y-1">
-                      <li>
-                        <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
+                      <!-- <li>
+
                         <nuxt-link to="/admins/dashboard" @click.native="isOpen = false"
                           class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                           <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -38,7 +38,7 @@
                           </svg>
                           Dashboard
                         </nuxt-link>
-                      </li>
+                      </li> -->
                       <li>
                         <nuxt-link to="/admins/dashboard/users" @click.native="isOpen = false"
                           class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
@@ -94,8 +94,7 @@
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" class="-mx-2 space-y-1">
-                  <li>
-                    <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
+                  <!-- <li>
                     <nuxt-link to="/admins/dashboard"
                       class=" text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                       <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -105,7 +104,7 @@
                       </svg>
                       Dashboard
                     </nuxt-link>
-                  </li>
+                  </li> -->
                   <!-- <li>
                     <a href="#"
                       class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
@@ -228,7 +227,8 @@
                   <span class="sr-only">Open user menu</span>
                   <img v-if="admin.passport?.length" class="h-8 w-8 rounded-full bg-gray-50" :src="admin.passport"
                     alt="">
-                  <span v-else class="h-10 w-10 flex justify-center items-center bg-black text-white rounded-full ">{{ getInitials(admin.name) }}</span>
+                  <span v-else class="h-10 w-10 flex justify-center items-center bg-black text-white rounded-full ">{{
+        getInitials(admin.name) }}</span>
                   <span class="hidden lg:flex lg:items-center">
                     <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">{{ admin.name ??
                       'Nil' }}</span>
@@ -276,8 +276,8 @@ export default {
         confirmButtonText: 'Yes, logout!'
       }).then((result) => {
         if (result.value) {
-          window.localStorage.removeItem('user')
-          window.localStorage.removeItem('auth')
+          sessionStorage.removeItem('user')
+          sessionStorage.removeItem('auth')
           this.$router.push('/admins')
         } else {
           this.$swal('Cancelled', "You're still logged in!", 'info')
@@ -290,7 +290,7 @@ export default {
     },
   },
   mounted() {
-    const user = window.localStorage.getItem('user')
+    const user = sessionStorage.getItem('user')
     if (user.length) {
       const result = JSON.parse(user)
       this.admin = result

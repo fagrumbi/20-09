@@ -41,7 +41,7 @@ export default {
     async handleBuyCrypto() {
       this.processing = true
       if (process.client) {
-        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const accessToken = JSON.parse(sessionStorage.getItem('auth'))
         try {
           const wireTransferMutation = `
           mutation newTransaction($input: NewTransaction!) {

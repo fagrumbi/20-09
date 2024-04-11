@@ -51,11 +51,12 @@
                   :class="[transaction.transactionStatus === 'Pending' ? 'bg-yellow-500 py-2.5 text-xs text-white px-3 rounded-full' : transaction.transactionStatus === 'Approved' ? 'bg-green-500 py-2.5 text-xs text-white px-3 rounded-full' : transaction.transactionStatus === 'Declined' ? 'bg-red-500 py-2.5 text-xs text-white px-3 rounded-full' : '']">{{
             transaction.transactionStatus ?? 'Nil' }}</span>
               </td>
-              <td class="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0">{{
+              <td class="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0">
+                {{ user.accountCurrency ?? 'Nil' }}{{
             formatNumberAsDollar(transaction.amount) ?? 'Nil' }}</td>
               <td class="hidden px-3 py-5 text-right text-sm text-gray-500 sm:table-cell">
-                <button @click="previewTransaction(transaction)" type="button" class="bg-black text-white">
-                  <img src="@/assets/icons/more.svg" alt="more" class="h-10" />
+                <button @click="previewTransaction(transaction)" type="button">
+                  <img src="@/assets/icons/more.svg" alt="more" />
                 </button>
               </td>
             </tr>
@@ -81,8 +82,15 @@
           <dl class="divide-y divide-gray-100">
             <div class="px-4 py-6 flex justify-between items-center sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Amount</dt>
-              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ selectedTransaction.amount ??
-            'Nil' }}</dd>
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                <div>
+                  <span v-if="Object.keys(user).length">
+                    {{ user.accountCurrency ?? 'Nil' }}{{
+                   formatNumberAsDollar(selectedTransaction.amount) ?? 'Nil' }}
+                  </span>
+                  <span v-else>Nil</span>
+                </div>
+              </dd>
             </div>
             <div class="px-4 py-6 flex justify-between items-center sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Beneficiary Account Number</dt>
@@ -132,12 +140,43 @@ import EmptyState from '@/components/core/EmptyState.vue'
 import Modal from '@/components/core/Modal.vue'
 export default {
   layout: 'user-dashboard',
+  head() {
+    return {
+      title: 'Bastons Banks | User Dashboard',
+      meta: [
+        // Standard meta tags
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
+        // SEO meta tags
+        { hid: 'description', name: 'description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'keywords', name: 'keywords', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+
+        // Open Graph / Facebook meta tags for rich sharing
+        { hid: 'og:title', property: 'og:title', content: 'Bastons Banks | User Dashboard' },
+        { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/user/withdrawals' },
+        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+
+        // Twitter Card meta tags
+        { hid: 'twitter:card', name: 'twitter:card', content: '' },
+        { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | User Dashboard' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
+        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ]
+    }
+  },
   components: {
     Modal,
     EmptyState
   },
   data() {
     return {
+      user: {},
       transactionsList: [],
       isModalVisible: false,
       selectedTransaction: {},
@@ -148,6 +187,9 @@ export default {
   created() {
     this.fetchTransactions()
   },
+  mounted() {
+    this.getUser()
+  },
   methods: {
     downloadWithdrawals() {
       this.$downloadCSV(this.transactionsList, 'withdrawals-data.csv');
@@ -155,7 +197,7 @@ export default {
     async fetchTransactions() {
       this.loading = true
       if (process.client) {
-        const accessToken = JSON.parse(window.localStorage.getItem('auth'))
+        const accessToken = JSON.parse(sessionStorage.getItem('auth'))
         this.loading = true
         const query = `
         query {
@@ -246,11 +288,17 @@ export default {
       }
     },
     formatNumberAsDollar(number) {
-      return number?.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+      return number?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     },
     previewTransaction(data) {
       this.isModalVisible = true
       this.selectedTransaction = data
+    },
+    getUser() {
+      if (process.client) {
+        const user = JSON.parse(sessionStorage.getItem('user'))
+        this.user = user
+      }
     }
   },
 }
