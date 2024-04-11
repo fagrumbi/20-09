@@ -45,7 +45,7 @@
                   <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Baston Security</a>
                 </li>
                 <li>
-                  <a href="mailto:support@bastionbanks.com"
+                  <a href="mailto:support@bastonsbanks.com"
                     class="text-sm leading-6 text-gray-300 hover:text-white">Email Us</a>
                 </li>
               </ul>

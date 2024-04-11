@@ -168,7 +168,7 @@ export default {
             sessionStorage.setItem('user', JSON.stringify(data?.data?.adminLogin?.user))
           }
           this.$toastr.s('Login was successful')
-          this.$router.push('/admins/users')
+          this.$router.push('/admins/dashboard/users')
         }
       } finally {
         this.processing = false
