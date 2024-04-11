@@ -28,7 +28,7 @@
           <div class="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
             <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
               <div class="relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Bastion Bank</h1>
+                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Bastons Bank</h1>
                 <p class="mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">We do banking differently. We
                   believe that people come first, and that everyone deserves a great experience every step of the way –
                   whether it’s face to face, over the phone, online or on our app.</p>
