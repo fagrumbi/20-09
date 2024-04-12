@@ -25,7 +25,7 @@
 
               <div>
                 <button :disabled="!isFormEmpty" type="submit"
-                  class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{
+                  class="flex w-full disabled:opacity-25 disabled:cursor-not-allowed justify-center rounded-md bg-indigo-600 px-3 py-3 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{
         processing ? "processing..." : "Submit" }}</button>
               </div>
               <p class="mt-10 text-center text-sm text-gray-500">
@@ -44,7 +44,7 @@
             Reset password token has been sent to your email.
           </p>
           <div class="w-full flex justify-center items-center pt-6">
-            <nuxt-link to="/reset"
+            <nuxt-link to="/user/reset"
               class="bg-green-600 flex justify-center items-center text-white px-6 py-3 w-full rounded-md text-sm">Proceed
               to
               reset</nuxt-link>

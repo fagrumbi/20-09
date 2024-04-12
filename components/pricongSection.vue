@@ -18,45 +18,51 @@
             </div>
           </div>
           <h2 class="text-2xl font-bold tracking-tight text-gray-900 pl-10">Baston Member Care</h2>
-          <div class="mt-16 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-3 p-10">
+          <div class="mt-16 grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 p-10">
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
-                <img class="h-16 w-16" src="https://tailwindui.com/img/ecommerce/icons/icon-shipping-simple.svg" alt="">
+                <a href="mailto:support@bastonsbanks.com">
+                  <img class="h-16 w-16"
+                    src="https://bastionbanks.com/templates/bank-pro/tabbed-icons/icon-send-message.svg" alt="">
+                </a>
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
-                <h3 class="text-sm font-medium text-gray-900">Send Us a Message</h3>
-                <p class="mt-2 text-sm text-gray-500">It&#039;s not actually free we just price it into the products.
-                  Someone&#039;s paying for it, and it&#039;s not us.</p>
+                <a href="mailto:support@bastonsbanks.com" class="text-sm font-medium text-gray-900">Send Us a
+                  Message</a>
               </div>
             </div>
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
-                <img class="h-16 w-16" src="https://tailwindui.com/img/ecommerce/icons/icon-shipping-simple.svg" alt="">
+                <img class="h-16 w-16" src="https://bastionbanks.com/templates/bank-pro/tabbed-icons/icon-call.svg"
+                  alt="">
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
                 <h3 class="text-sm font-medium text-gray-900">Call Us</h3>
-                <p class="mt-2 text-sm text-gray-500">It&#039;s not actually free we just price it into the products.
-                  Someone&#039;s paying for it, and it&#039;s not us.</p>
+                <!-- <p class="mt-2 text-sm text-gray-500">It&#039;s not actually free we just price it into the products.
+                  Someone&#039;s paying for it, and it&#039;s not us.</p> -->
               </div>
             </div>
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
-                <img class="h-16 w-16" src="https://tailwindui.com/img/ecommerce/icons/icon-warranty-simple.svg" alt="">
+                <a href="mailto:support@bastonsbanks.com">
+                  <img class="h-16 w-16"
+                    src="	https://bastionbanks.com/templates/bank-pro/tabbed-icons/icon-calendar.svg" alt="">
+                </a>
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
-                <h3 class="text-sm font-medium text-gray-900">Schedule An Appointment</h3>
-                <p class="mt-2 text-sm text-gray-500">If it breaks in the first 10 years we&#039;ll replace it. After
-                  that you&#039;re on your own though.</p>
+                <a href="mailto:support@bastonsbanks.com" class="text-sm font-medium text-gray-900">Schedule An
+                  Appointment</a>
               </div>
             </div>
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
-                <img class="h-16 w-16" src="https://tailwindui.com/img/ecommerce/icons/icon-exchange-simple.svg" alt="">
+                <img class="h-16 w-16" src="	https://bastionbanks.com/templates/bank-pro/tabbed-icons/icon-FAQs.svg"
+                  alt="">
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
-                <h3 class="text-sm font-medium text-gray-900">Faqs And Support</h3>
-                <p class="mt-2 text-sm text-gray-500">If you don&#039;t like it, trade it to one of your friends for
-                  something of theirs. Don&#039;t send it here though.</p>
+                <nuxt-link to="/contact-us" class="text-sm font-medium text-gray-900">Faqs And Support</nuxt-link>
+                <!-- <p class="mt-2 text-sm text-gray-500">If you don&#039;t like it, trade it to one of your friends for
+                  something of theirs. Don&#039;t send it here though.</p> -->
               </div>
             </div>
           </div>

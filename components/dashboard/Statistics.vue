@@ -18,6 +18,12 @@
       </div>
       <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
         <div class="flex justify-between gap-x-4 py-3">
+          <dt class="text-gray-500">Account Number</dt>
+          <dd class="text-gray-700">
+              {{ userData.accountNumber ?? 'Nil' }}
+            </dd>
+        </div>
+        <div class="flex justify-between gap-x-4 py-3">
           <dt class="text-gray-500">Last balance</dt>
           <dd class="text-gray-700"><time datetime="2022-12-13">
               {{ userData.accountCurrency ?? 'Nil' }}
