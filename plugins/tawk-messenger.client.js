@@ -3,7 +3,7 @@ import TawkMessengerVue from '@tawk.to/tawk-messenger-vue-2'
 
 export default function () {
   Vue.use(TawkMessengerVue, {
-    propertyId: '661797361ec1082f04e1238f',
-    widgetId: '1hr62dbbh'
+    propertyId: '6617e8b41ec1082f04e14a50',
+    widgetId: '1hr6ma0t3'
   })
 }

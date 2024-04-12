@@ -11,65 +11,57 @@
             class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Print</button>
         </div>
       </div>
-      <div v-if="transactionsList?.length && !loading" class="-mx-4 mt-8 flow-root sm:mx-0">
-        <table class="min-w-full">
-          <colgroup>
-            <col class="w-full sm:w-1/2">
-            <col class="sm:w-1/6">
-            <col class="sm:w-1/6">
-            <col class="sm:w-1/6">
-          </colgroup>
-          <thead class="border-b border-gray-300 text-gray-900">
+      <div v-if="transactionsList?.length && !loading"
+        class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
             <tr>
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Account
-                Number</th>
-              <th scope="col" class="hidden px-3 py-3.5 text-right text-sm font-semibold text-gray-900 sm:table-cell">
-                Transaction Date</th>
-              <th scope="col" class="hidden px-3 py-3.5 text-right text-sm font-semibold text-gray-900 sm:table-cell">
-                Transaction Status
               </th>
-              <th scope="col" class="py-3.5 pl-3 pr-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">Amount
-              </th>
-              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                <span class="sr-only">Select</span>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Amount</th>
+              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                <span class="sr-only">Edit</span>
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="border-b border-gray-200" v-for="transaction in transactionsList" :key="transaction">
-              <td class="max-w-0 py-5 pl-4 pr-3 text-sm sm:pl-0">
-                <div class="font-medium text-gray-900">{{ transaction.beneficiaryAccountNumber?.length ?
-            transaction.beneficiaryAccountNumber : 'Nil' }}</div>
+          <tbody class="divide-y divide-gray-200 bg-white">
+            <tr v-for="transaction in transactionsList" :key="transaction.id">
+              <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+                <div class="font-medium text-gray-900">
+                  {{ transaction.beneficiaryAccountNumber?.length ?
+            transaction.beneficiaryAccountNumber : 'Nil' }}
+                </div>
                 <div class="mt-1 truncate text-gray-500">{{ transaction.beneficiaryName?.length ?
-            transaction.beneficiaryName : 'Nil' }}</div>
+            transaction.beneficiaryName : 'Nil' }}
+                </div>
               </td>
-              <td class="hidden px-3 py-5 text-right text-sm text-gray-500 sm:table-cell">
-                {{ formatDateTime(transaction.timeAdded) ?? 'Nil' }}
+              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                <div class="text-gray-900">{{ formatDateTime(transaction.timeAdded) ?? 'Nil' }}</div>
+                <!-- <div class="mt-1 text-gray-500">Optimization</div> -->
               </td>
-              <td class="hidden px-3 py-5 text-right text-sm text-gray-500 sm:table-cell">
+              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                 <span
-                  :class="[transaction.transactionStatus === 'Pending' ? 'bg-yellow-500 py-2.5 text-xs text-white px-3 rounded-full' : transaction.transactionStatus === 'Approved' ? 'bg-green-500 py-2.5 text-xs text-white px-3 rounded-full' : transaction.transactionStatus === 'Declined' ? 'bg-red-500 py-2.5 text-xs text-white px-3 rounded-full' : '']">{{
-            transaction.transactionStatus ?? 'Nil' }}</span>
+                  :class="[transaction.transactionStatus === 'Pending' ? 'bg-yellow-500 py-2 text-xs text-white px-2.5 rounded-full' : transaction.transactionStatus === 'Approved' ? 'bg-green-500 py-2.5 text-xs text-white px-3 rounded-full' : transaction.transactionStatus === 'Declined' ? 'bg-red-500 py-2.5 text-xs text-white px-3 rounded-full' : '']">
+                  {{ transaction.transactionStatus ?? 'Nil' }}</span>
               </td>
-              <td class="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0">
+              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                 {{ user.accountCurrency ?? 'Nil' }}{{
-            formatNumberAsDollar(transaction.amount) ?? 'Nil' }}</td>
-              <td class="hidden px-3 py-5 text-right text-sm text-gray-500 sm:table-cell">
-                <button @click="previewTransaction(transaction)" type="button">
-                  <img src="@/assets/icons/more.svg" alt="more" />
-                </button>
+            formatNumberAsDollar(transaction.amount) ?? 'Nil' }}
+              </td>
+              <td class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                <a @click.prevent="previewTransaction(transaction)" href="#"
+                  class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
               </td>
             </tr>
+
+            <!-- More people... -->
           </tbody>
         </table>
       </div>
       <div v-else-if="loading && !transactionsList?.length" class="bg-white rounded-lg shadow-md p-4 animate-pulse">
-        <!-- Header -->
-        <!-- <div class="w-2/3 h-4 bg-gray-300 rounded mb-2"></div> -->
-        <!-- Body -->
         <div class="w-full h-32 bg-gray-300 rounded mb-2"></div>
-        <!-- <div class="w-full h-8 bg-gray-300 rounded mb-2"></div>
-        <div class="w-1/2 h-8 bg-gray-300 rounded"></div> -->
       </div>
       <EmptyState title="No Withdrawals available" desc="Please perform a withdrawal transaction" v-else />
     </div>
@@ -86,7 +78,7 @@
                 <div>
                   <span v-if="Object.keys(user).length">
                     {{ user.accountCurrency ?? 'Nil' }}{{
-                   formatNumberAsDollar(selectedTransaction.amount) ?? 'Nil' }}
+            formatNumberAsDollar(selectedTransaction.amount) ?? 'Nil' }}
                   </span>
                   <span v-else>Nil</span>
                 </div>
@@ -123,7 +115,7 @@
             <div class="px-4 py-6 flex justify-between items-center sm:gap-4 sm:px-6">
               <dt class="text-sm font-medium text-gray-900">Transaction Status</dt>
               <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                {{ selectedTransaction.transactionStatus?.length ? selectedTransaction.transactionStatus : 'Nil'}}</dd>
+                {{ selectedTransaction.transactionStatus?.length ? selectedTransaction.transactionStatus : 'Nil' }}</dd>
             </div>
           </dl>
         </div>
