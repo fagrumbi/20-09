@@ -14,7 +14,7 @@
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
           <div class="mt-2">
             <input id="email" v-model="form.email" name="email" type="email" autocomplete="email" required
-              class="block py-3 px-3 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              class="block py-3 px-3 w-full rounded-md border-[0.6px] bg-gray-100 border-gray-500 text-gray-900 shadow-sm placeholder:text-gray-400  sm:text-sm sm:leading-6" />
           </div>
         </div>
 
@@ -29,7 +29,7 @@
           <div class="mt-2 relative">
             <input id="password" v-model="form.password" name="password" :type="showPassword ? 'text' : 'password'"
               autocomplete="current-password" required
-              class="block py-3 px-3 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              class="block py-3 px-3 w-full rounded-md border-[0.6px] bg-gray-100 border-gray-500 text-gray-900 shadow-sm placeholder:text-gray-400  sm:text-sm sm:leading-6" />
             <img @click="showPassword = !showPassword" :src="require(`@/assets/icons/${eye}`)" alt=""
               class="absolute cursor-pointer top-2 right-4 h-6 w-6">
           </div>

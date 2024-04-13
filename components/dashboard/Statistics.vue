@@ -17,11 +17,8 @@
         </div>
       </div>
       <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
-        <div class="flex justify-between gap-x-4 py-3">
-          <dt class="text-gray-500">Account Number</dt>
-          <dd class="text-gray-700">
-              {{ userData.accountNumber ?? 'Nil' }}
-            </dd>
+        <div v-if="userData.accountNumber">
+          <CardDisplay v-if="Object.keys(userData).length" :cardNumber="userData.accountNumber" />
         </div>
         <div class="flex justify-between gap-x-4 py-3">
           <dt class="text-gray-500">Last balance</dt>
@@ -76,10 +73,17 @@
 </template>
 
 <script>
+import CardDisplay from '@/components/core/CardDisplay.vue';
 import DebitCard from '@/components/dashboard/DebitCard.vue'
 export default {
+  data() {
+    return {
+      visible: false
+    };
+  },
   components: {
     DebitCard,
+    CardDisplay
   },
   props: {
     userData: {
@@ -87,10 +91,24 @@ export default {
       default: {}
     }
   },
+  computed: {
+    // displayCardNumber() {
+    //   console.log(this.userData)
+    //   if (Object.keys(this.userData).length) {
+    //     if (this.visible) {
+    //       return this.userData?.accountNumber;
+    //     }
+    //     return '**** **** **** ' + this.userData?.accountNumber.slice(-4);
+    //   }
+    // }
+  },
   methods: {
     formatNumber(number) {
       return number?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
     },
+    // toggleVisibility() {
+    //   this.visible = !this.visible;
+    // }
   }
 }
 </script>

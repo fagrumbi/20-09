@@ -12,7 +12,7 @@
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
           <div class="mt-2">
             <input id="email" v-model="form.email" name="email" type="email" autocomplete="email" required
-              class="block py-3 px-3 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              class="block py-3 px-3 w-full rounded-md text-gray-900 shadow-sm ring-1 ring-inset border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6">
           </div>
         </div>
 
@@ -27,7 +27,7 @@
           <div class="mt-2">
             <input id="password" v-model="form.password" name="password" type="password" autocomplete="current-password"
               required
-              class="block py-3 px-3 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              class="block py-3 px-3 w-full rounded-md text-gray-900 shadow-sm ring-1 ring-inset border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6">
           </div>
         </div>
 

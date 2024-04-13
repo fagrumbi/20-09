@@ -16,44 +16,45 @@
         </div>
 
         <div class="mt-10">
+          <!-- border-[0.6px] bg-gray-100 border-gray-500 -->
           <div>
             <form @submit.prevent="handleSubmit" class="space-y-6">
               <div>
                 <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="name" name="name" type="text" v-model="form.name"
-                    class="block w-full px-3 rounded-md border-0 py-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full px-3 rounded-md  py-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
               <div>
                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="email" name="email" type="email" v-model="form.email"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
 
               <div>
                 <label for="phone" class="block text-sm font-medium leading-6 text-gray-900">Phone Number</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="phone" name="phone" type="tel" v-model="form.phoneNumber"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
 
               <div>
                 <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date Of Birth</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="date" name="date" type="date" v-model="form.dob"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
 
               <div>
                 <label for="gender" class="block text-sm font-medium leading-6 text-gray-900">Gender</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <select v-model="form.gender"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    class="block w-full rounded-md  py-3 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6">
                     <option v-for="(itm, idx) in ['Male', 'Female', 'Other']" :key="idx">
                       {{ itm }}
                     </option>
@@ -64,60 +65,60 @@
               <div>
                 <label for="taxId" class="block text-sm font-medium leading-6 text-gray-900">Social Security
                   Number/Tax ID</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="taxId" name="taxId" type="text" v-model="form.ssn"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
 
               <div>
                 <label for="occupation" class="block text-sm font-medium leading-6 text-gray-900">Occupation</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="occupation" name="occupation" type="text" v-model="form.occupation"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
               <div>
                 <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
-                <div class="mt-2">
-                  <div class="mt-2">
+                <div class="mt-2 w-full">
+                  <div class="mt-2 w-full">
                     <input id="country" name="country" type="text" v-model="form.country"
-                      class="block w-full px-3 rounded-md border-0 py-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                      class="block w-full px-3 rounded-md  py-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                   </div>
                 </div>
               </div>
 
               <div>
                 <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
-                <div class="mt-2">
-                  <div class="mt-2">
+                <div class="mt-2 w-full">
+                  <div class="mt-2 w-full">
                     <input id="city" name="city" type="text" v-model="form.city"
-                      class="block w-full px-3 rounded-md border-0 py-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                      class="block w-full px-3 rounded-md  py-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                   </div>
                 </div>
               </div>
 
               <div>
                 <label for="zip" class="block text-sm font-medium leading-6 text-gray-900">Zip</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="zip" name="zip" type="tel" v-model="form.zip"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
 
               <div>
                 <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <textarea id="address" name="address" rows="6" cols="6" v-model="form.address"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 resize-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                    class="block w-full rounded-md  py-3 outline-none px-3 resize-none shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6"></textarea>
                 </div>
               </div>
               <div>
                 <label for="account-currency" class="block text-sm font-medium leading-6 text-gray-900">Account
                   Currency</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <select v-model="form.accountCurrency" name="currency"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    class="block w-full rounded-md  py-3 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6"
                     required="">
                     <option value="">Select</option>
                     <option value="$">US Dollar</option>
@@ -148,24 +149,24 @@
 
               <div>
                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="password" name="password" type="password" v-model="form.password"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 bg-gray-100 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
               <div>
                 <label for="pin" class="block text-sm font-medium leading-6 text-gray-900">PIN</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="pin" name="pin" type="tel" v-model="form.pin"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 bg-gray-100 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
               <div>
                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Passport
                   Photograph</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <div class="col-span-full" v-if="!passportFilePreview">
-                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                    <div class="mt-2 w-full flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                       <div class="text-center">
                         <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
                           aria-hidden="true">
@@ -201,9 +202,9 @@
               <div>
                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Means of
                   Identification</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <div class="col-span-full" v-if="!identificationFilePreview">
-                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                    <div class="mt-2 w-full flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                       <div class="text-center">
                         <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
                           aria-hidden="true">
@@ -239,9 +240,9 @@
               <div>
                 <label for="referralCode" class="block text-sm font-medium leading-6 text-gray-900">Referral Code
                   (optional)</label>
-                <div class="mt-2">
+                <div class="mt-2 w-full">
                   <input id="referralCode" name="referralCode" type="tel" v-model="form.referralCode"
-                    class="block w-full rounded-md border-0 py-3 bg-gray-100 outline-none px-3 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    class="block w-full rounded-md  py-3 bg-gray-100 outline-none px-3 shadow-sm  placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6" />
                 </div>
               </div>
               <div>

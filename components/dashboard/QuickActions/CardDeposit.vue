@@ -4,7 +4,7 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="cardNumber">Card Number</label>
       <input v-model.trim="cardNumber" :class="{ 'border-red-500': !isValidCardNumber }" type="text" id="cardNumber"
         name="cardNumber"
-        class="block w-full rounded-md border-0 py-2.5 px-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        class="block w-full rounded-md py-2.5 px-2.5 text-gray-900 shadow-sm placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6"
         placeholder="1234 5678 9012 3456">
       <p v-if="!isValidCardNumber" class="text-red-500 text-xs italic">Please enter a valid card number.</p>
     </div>
@@ -13,14 +13,14 @@
       <label class="block text-gray-700 text-sm font-bold mb-2" for="expiryDate">Expiry Date</label>
       <input v-model.trim="expiryDate" :class="{ 'border-red-500': !isValidExpiryDate }" type="text" id="expiryDate"
         name="expiryDate"
-        class="block w-full rounded-md border-0 py-2.5 px-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        class="block w-full rounded-md py-2.5 px-2.5 text-gray-900 shadow-sm placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6"
         placeholder="MM/YY">
       <p v-if="!isValidExpiryDate" class="text-red-500 text-xs italic">Please enter a valid expiry date (MM/YY).</p>
     </div>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="cvv">CVV</label>
       <input v-model.trim="cvv" :class="{ 'border-red-500': !isValidCVV }" type="text" id="cvv" name="cvv"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        class="block w-full rounded-md py-2.5 px-2.5 text-gray-900 shadow-sm placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6"
         placeholder="CVV">
       <p v-if="!isValidCVV" class="text-red-500 text-xs italic">Please enter a valid CVV.</p>
     </div>
@@ -29,7 +29,7 @@
       <label for="card-holder-name" class="block text-sm font-medium leading-6 text-gray-900">Card Holder Name</label>
       <div class="mt-2">
         <input v-model="cardHolderName" id="card-holder-name" name="card-holder-name" type="text"
-          class="block w-full rounded-md border-0 py-2.5 px-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          class="block w-full rounded-md py-2.5 px-2.5 text-gray-900 shadow-sm placeholder:text-gray-400 border-[0.6px] bg-gray-100 border-gray-500 sm:text-sm sm:leading-6">
       </div>
     </div>
 
