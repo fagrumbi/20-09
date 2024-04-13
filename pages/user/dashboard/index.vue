@@ -296,6 +296,7 @@ export default {
             accountBalance
             cardBalance
             cardNumber
+            accountNumber
             expiry
             cvv
             eth

@@ -27,7 +27,7 @@ export default {
       if (this.visible) {
         return this.cardNumber;
       }
-      return '**** **** **** ' + this.cardNumber.slice(-4);
+      return '*** *** ' + this.cardNumber.slice(-4);
     },
     eye() {
       return !this.visible ? 'eye-close.svg' : 'eye-open.svg'
