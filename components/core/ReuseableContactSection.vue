@@ -39,10 +39,10 @@
         </div>
         <div>
           <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
-            <img src="https://bastionbanks.com/templates/bank-pro/footer-images/live-video-call.png" class="h-10 w-10" />
-            Video Connect</h3>
+            <img src="@/assets/icons/whatsapp.svg" class="h-10 w-10" />
+            Whatsapp Connect</h3>
           <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
-            <p>Chat Virtually</p>
+            <p>+447465803771</p>
           </address>
         </div>
       </div>
