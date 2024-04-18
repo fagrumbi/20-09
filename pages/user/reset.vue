@@ -1,22 +1,24 @@
 <template>
   <div class="flex min-h-full lg:h-screen">
     <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-      <section class="grid place-content-center h-screen">
-        <h1 class="text-3xl font-bold">
-          Almost Done!
-        </h1>
-        <p class="text-gray-500 text-sm leading-loose">
-          Please enter your reset password token and your new password.
-        </p>
-        <form class="space-y-10" @submit.prevent="login">
+      <section class="grid place-content-center h-screen space-y-6">
+        <div>
+          <h1 class="text-3xl font-bold">
+            Almost Done!
+          </h1>
+          <p class="text-gray-500 text-sm leading-loose">
+            Please enter your reset password token and your new password.
+          </p>
+        </div>
+        <form class="space-y-4" @submit.prevent="login">
           <div class="space-y-1 text-sm w-full">
             <label for="token" class="block text-gray-900 font-medium">Token</label>
-            <input id="token" v-model="form.resetCode" type="tel" name="token" placeholder="email"
+            <input id="token" v-model="form.resetCode" type="tel" name="token" placeholder="Enter token"
               class="border-[0.6px] bg-gray-100 border-gray-500 w-full outline-none px-4 py-3 rounded-md text-gray-900">
           </div>
           <div class="space-y-1 text-sm w-full">
             <label for="password" class="block text-gray-900 font-medium">New Password</label>
-            <input id="password" v-model="form.password" type="password" name="password" placeholder="password"
+            <input id="password" v-model="form.password" type="password" name="password" placeholder="Enter password"
               class="border-[0.6px] bg-gray-100 border-gray-500 w-full outline-none px-4 py-3 rounded-md text-gray-900">
           </div>
           <div class="w-full pt-6">
