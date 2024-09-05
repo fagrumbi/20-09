@@ -4,8 +4,8 @@
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <img class="h-32 w-full" src="@/assets/img/preview.png"
-              alt="Your Company">
+            <!-- <img class="h-32 w-full" src="@/assets/img/preview.png"
+              alt="Your Company"> -->
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">

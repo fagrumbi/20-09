@@ -252,7 +252,7 @@
           <!-- Separator -->
           <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
             <div class="mt-3">
-              <img src="@/assets/img/preview.png" />
+              <!-- <img src="@/assets/img/preview.png" /> -->
             </div>
             <div class="flex items-center gap-x-4 lg:gap-x-6">
               <!-- Separator -->
