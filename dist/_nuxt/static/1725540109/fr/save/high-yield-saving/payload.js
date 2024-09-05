@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/fr/save/high-yield-saving", {data:[{}],fetch:{},mutations:void 0});

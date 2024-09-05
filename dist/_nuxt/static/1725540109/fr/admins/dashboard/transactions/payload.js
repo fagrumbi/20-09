@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/fr/admins/dashboard/transactions", {data:[{}],fetch:{},mutations:void 0});

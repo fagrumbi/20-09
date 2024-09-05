@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/user/dashboard/withdrawals", {data:[{}],fetch:{},mutations:void 0});
