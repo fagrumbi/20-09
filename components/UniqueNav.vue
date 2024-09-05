@@ -251,8 +251,8 @@
           class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-blue-700 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
           <!-- Separator -->
           <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <div class="mt-3">
-              <!-- <img src="@/assets/img/preview.png" /> -->
+            <div class="-mt-5">
+              <img class="w-full h-24" src="@/assets/img/preview.png" />
             </div>
             <div class="flex items-center gap-x-4 lg:gap-x-6">
               <!-- Separator -->
