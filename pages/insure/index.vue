@@ -11,7 +11,7 @@
 </ReuseableHeroSection> -->
     <ReuseableMiniHero title="Insurance Services" intro="Insure"
       desc="Enjoy lower premiums and priceless peace of mind when you secure your auto, home, and future with Bastion."
-      imgUrl="https://bastionbanks.com/templates/bank-pro/invest-images/wealth-management-bucks-county-what-is-estate-planning.jpg" />
+      imgUrl="hero1.jpg" />
     <div class="text-base px-4 lg:px-0 max-w-7xl mx-auto space-y-6 pt-16">
       <p class="mx-auto mt-5 max-w-full text-gray-800">Bastion offers convenient, simple and free banking
         As a Bastion customer, you’ll enjoy lower insurance premiums on auto, renters, homeowners, life, and more. With
@@ -119,13 +119,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/insure' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Insure' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

@@ -11,7 +11,7 @@
 </ReuseableHeroSection> -->
     <ReuseableMiniHero title="Easy & Secure Loan Payments" intro="Payments"
       desc="Thank you for choosing Bastion Bank as your lending partner. Pay your loan now or set up automatic payments."
-      imgUrl="https://bastionbanks.com/templates/bank-pro/borrow-images/Citadel_AlkemyX_00034_borrow_kat_1600x650.jpg" />
+      imgUrl="hero4.jpg" />
     <section class="max-w-7xl mx-auto pb-10 space-y-6">
       <p>Bastion offers several convenient options to make payments on auto loans, personal loans, and mortgages. You
         can
@@ -130,13 +130,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/payments' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Payments' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

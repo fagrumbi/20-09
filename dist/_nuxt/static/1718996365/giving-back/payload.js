@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/giving-back", {data:[{}],fetch:{},mutations:void 0});

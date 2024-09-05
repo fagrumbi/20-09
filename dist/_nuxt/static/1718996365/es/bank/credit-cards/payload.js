@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/es/bank/credit-cards", {data:[{}],fetch:{},mutations:void 0});

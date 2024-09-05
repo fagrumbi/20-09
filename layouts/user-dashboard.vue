@@ -20,7 +20,7 @@
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
               <div class="flex h-16 shrink-0 items-center">
-                <img class="h-8 w-auto" src="https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png"
+                <img class="h-32 w-full" src="@/assets/img/preview.png"
                   alt="Your Company">
               </div>
               <nav class="flex flex-1 flex-col">
@@ -87,7 +87,7 @@
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
           <div class="flex h-16 shrink-0 items-center">
-            <img class="h-8 w-auto" src="https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png"
+            <img class="h-32 w-full" src="@/assets/img/preview.png"
               alt="Your Company">
           </div>
           <nav class="flex flex-1 flex-col">

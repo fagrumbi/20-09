@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png"
+      <img class="mx-auto h-32 w-auto" src="@/assets/img/preview.png"
         alt="Your Company" />
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Sign in to your account
@@ -72,13 +72,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/user/login' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | User Login' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

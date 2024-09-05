@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/es/learn-and-plan/rising-rates-impact", {data:[{}],fetch:{},mutations:void 0});

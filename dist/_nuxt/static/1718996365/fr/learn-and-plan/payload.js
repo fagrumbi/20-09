@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/fr/learn-and-plan", {data:[{}],fetch:{},mutations:void 0});

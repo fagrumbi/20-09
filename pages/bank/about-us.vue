@@ -3,7 +3,7 @@
     <ReuseableMiniHero title="Who We Are" intro="About Bastion" desc="Hi there. We're Bastion. We promise to help you live your
     brightest future by inspiring you with the guidance and tools to build financial strength – today and
     tomorrow."
-      imgUrl="https://bastionbanks.com/templates/bank-pro/why-citadel-images/3217%20%20Why%20Citadel%20ContentAboutUsv30.jpg" />
+      imgUrl="hero2.jpg" />
     <section class="max-w-7xl px-4 lg:px-0 mx-auto space-y-8 py-6">
       <p class="font-light">CryptoPro Investment Platform is a leading, independent Digital Assets Investment platform
         that provides
@@ -253,13 +253,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/bank/about-us' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Bank' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

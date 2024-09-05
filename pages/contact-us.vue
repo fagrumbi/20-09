@@ -35,7 +35,7 @@
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
                 <a href="#"><img class="h-16 w-16"
-                    src="https://bastionbanks.com/templates/bank-pro/images/assets/get-started-chat.svg" alt=""></a>
+                    src="@/assets/icons/routing.svg" alt=""></a>
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
                 <h3 class="text-sm font-medium text-gray-900">Video Connect</h3>
@@ -46,7 +46,7 @@
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
                 <a href="mailto:support@bastionbanks.com"> <img class="h-16 w-16"
-                    src="https://bastionbanks.com/templates/bank-pro/images/assets/get-started-email-us.svg" alt=""></a>
+                    src="@/assets/icons/routing.svg" alt=""></a>
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
                 <h3 class="text-sm font-medium text-gray-900">Email Us</h3>
@@ -57,7 +57,7 @@
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
                 <a href="mailto:support@bastionbanks.com"><img class="h-16 w-16"
-                    src="https://bastionbanks.com/templates/bank-pro/images/assets/get-started-visit-us.svg" alt=""></a>
+                    src="@/assets/icons/routing.svg" alt=""></a>
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
                 <h3 class="text-sm font-medium text-gray-900">Schedule Appointment</h3>
@@ -68,7 +68,7 @@
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
                 <a href="tel:+447451272406"><img class="h-16 w-16"
-                    src="https://bastionbanks.com/templates/bank-pro/images/assets/get-started-visit-us.svg" alt=""></a>
+                    src="@/assets/icons/routing.svg" alt=""></a>
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
                 <h3 class="text-sm font-medium text-gray-900">Call Us</h3>
@@ -104,13 +104,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/contact-us' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Contact Us' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

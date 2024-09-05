@@ -10,7 +10,7 @@
 </ReuseableHeroSection> -->
     <ReuseableMiniHero title="Helping You Invest in Your Future" intro="Wealth & Retire"
       desc="Whether you’re starting to save or ready to retire, we have investment solutions to help meet your needs."
-      imgUrl="https://bastionbanks.com/templates/bank-pro/invest-images/Citadel_AlkemyX_00405_weatlh_kate_1600x650.jpg" />
+      imgUrl="hero3.jpg" />
     <div class="text-base px-4 lg:px-0 max-w-7xl mx-auto space-y-6 pt-16">
       <p class="mx-auto mt-5 max-w-full text-gray-800">From building college savings and growing your retirement during
         working years to retirement planning and asset management—our CFS Financial Advisors offer personalized
@@ -128,13 +128,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/invest' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Invest' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

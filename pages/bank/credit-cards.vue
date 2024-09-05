@@ -2,7 +2,7 @@
   <main>
     <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
       <img
-        src="https://bastionbanks.com/templates/bank-pro/invest-images/Citadel_AlkemyX_00405_weatlh_kate_1600x650.jpg"
+        src="@/assets/img/hero2.jpg"
         alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
       <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
         aria-hidden="true">
@@ -50,7 +50,7 @@
                   <div
                     class="aspect-h-1 aspect-w-1 w-full flex-shrink-0 overflow-hidden rounded-lg sm:aspect-none sm:h-40 sm:w-40">
                     <img
-                      src="https://bastionbanks.com/templates/bank-pro/bank-images/contactless-payments/credit-card-product-pages/best-credit-cards-for-young-adults364a.svg"
+                    src="@/assets/icons/credit.svg"
                       alt="Insulated bottle with white base and black snap lid."
                       class="h-full w-full object-cover object-center sm:h-full sm:w-full">
                   </div>
@@ -95,7 +95,7 @@
                   <div
                     class="aspect-h-1 aspect-w-1 w-full flex-shrink-0 overflow-hidden rounded-lg sm:aspect-none sm:h-40 sm:w-40">
                     <img
-                      src="https://bastionbanks.com/templates/bank-pro/bank-images/contactless-payments/credit-card-product-pages/best-credit-cards-for-young-adults364a.svg"
+                    src="@/assets/icons/credit.svg"
                       alt="Insulated bottle with white base and black snap lid."
                       class="h-full w-full object-cover object-center sm:h-full sm:w-full">
                   </div>
@@ -139,7 +139,7 @@
                   <div
                     class="aspect-h-1 aspect-w-1 w-full flex-shrink-0 overflow-hidden rounded-lg sm:aspect-none sm:h-40 sm:w-40">
                     <img
-                      src="https://bastionbanks.com/templates/bank-pro/bank-images/contactless-payments/credit-card-product-pages/best-credit-cards-for-young-adults364a.svg"
+                    src="@/assets/icons/credit.svg"
                       alt="Insulated bottle with white base and black snap lid."
                       class="h-full w-full object-cover object-center sm:h-full sm:w-full">
                   </div>
@@ -182,7 +182,7 @@
                   <div
                     class="aspect-h-1 aspect-w-1 w-full flex-shrink-0 overflow-hidden rounded-lg sm:aspect-none sm:h-40 sm:w-40">
                     <img
-                      src="https://bastionbanks.com/templates/bank-pro/bank-images/contactless-payments/credit-card-product-pages/best-credit-cards-for-young-adults364a.svg"
+                      src="@/assets/icons/credit.svg"
                       alt="Insulated bottle with white base and black snap lid."
                       class="h-full w-full object-cover object-center sm:h-full sm:w-full">
                   </div>
@@ -247,13 +247,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/bank/credit-cards' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Bank' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

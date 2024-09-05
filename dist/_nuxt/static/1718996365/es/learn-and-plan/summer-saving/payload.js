@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/es/learn-and-plan/summer-saving", {data:[{}],fetch:{},mutations:void 0});

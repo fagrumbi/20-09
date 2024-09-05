@@ -9,7 +9,7 @@
         <div>
           <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
             <img
-              src="https://bastionbanks.com/templates/bank-pro/icons/footer-icons/citadel-credit-union-routing-number.svg"
+              src="@/assets/icons/routing.svg"
               class="h-10 w-10" />
             Routing #
           </h3>
@@ -19,7 +19,7 @@
         </div>
         <div>
           <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
-            <img src="https://bastionbanks.com/templates/bank-pro/icons/prefooter-icons/icoclock.png" class="h-10 w-10" />
+            <img src="@/assets/icons/clock.png" class="h-10 w-10" />
             Branch Hours: Mon - Thurs: 8:30
             a.m.-5:00 p.m.</h3>
           <address class="border-l border-gray-200 pl-6 pt-2 not-italic text-gray-600">
@@ -29,7 +29,7 @@
         </div>
         <div>
           <h3 class="border-l border-indigo-600 pl-6 font-semibold text-gray-900">
-            <img src="https://bastionbanks.com/templates/bank-pro/icons/footer-icons/call-citadel-credit-union.svg"
+            <img src="@/assets/icons/call-icon.svg"
             class="h-10 w-10" />
             <a href="mailto:support@bastonsbanks.com">support@bastonsbanks.com</a>
           </h3>

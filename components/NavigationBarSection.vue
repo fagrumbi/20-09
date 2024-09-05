@@ -4,7 +4,7 @@
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+            <img class="h-32 w-full" src="@/assets/img/preview.png"
               alt="Your Company">
           </div>
           <div class="hidden sm:ml-6 sm:block">
@@ -39,7 +39,7 @@
                     alt="">
                 </button>
               </div>
-      
+
               <div v-if="false"
                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -133,7 +133,7 @@
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
               <div class="flex h-16 shrink-0 items-center">
-                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                <img class="h-32 w-full" src="@/assets/img/preview.png" alt="Your Company">
               </div>
               <nav class="flex flex-1 flex-col">
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">

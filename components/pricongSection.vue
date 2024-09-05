@@ -23,7 +23,7 @@
               <div class="sm:flex-shrink-0">
                 <a href="mailto:support@bastonsbanks.com">
                   <img class="h-16 w-16"
-                    src="https://bastionbanks.com/templates/bank-pro/tabbed-icons/icon-send-message.svg" alt="">
+                    src="@/assets/icons/send-us-message.svg" alt="">
                 </a>
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
@@ -33,8 +33,7 @@
             </div>
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
-                <img class="h-16 w-16" src="https://bastionbanks.com/templates/bank-pro/tabbed-icons/icon-call.svg"
-                  alt="">
+                <img class="h-16 w-16" src="@/assets/icons/call-us.svg" alt="">
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
                 <h3 class="text-sm font-medium text-gray-900">Call Us</h3>
@@ -46,7 +45,7 @@
               <div class="sm:flex-shrink-0">
                 <a href="mailto:support@bastonsbanks.com">
                   <img class="h-16 w-16"
-                    src="	https://bastionbanks.com/templates/bank-pro/tabbed-icons/icon-calendar.svg" alt="">
+                    src="@/assets/icons/calendar.svg" alt="">
                 </a>
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
@@ -56,7 +55,7 @@
             </div>
             <div class="sm:flex lg:block">
               <div class="sm:flex-shrink-0">
-                <img class="h-16 w-16" src="	https://bastionbanks.com/templates/bank-pro/tabbed-icons/icon-FAQs.svg"
+                <img class="h-16 w-16" src="@/assets/icons/faq-support.svg"
                   alt="">
               </div>
               <div class="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">

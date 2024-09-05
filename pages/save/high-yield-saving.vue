@@ -3,7 +3,7 @@
     <div class="space-y-6">
       <ReuseableMiniHero title="The Smart Place to Save"
         desc="Bastion Bank is a highly ranked global financial institution" intro="Save"
-        imgUrl="https://bastionbanks.com/templates/bank-pro/save-images/Citadel_AlkemyX_06578_save_family_1600x650.jpg" />
+        imgUrl="hero3.jpg" />
 
       <section class="max-w-7xl px-4 lg:px-0 mx-auto space-y-8 pb-10">
         <div class="space-y-10">
@@ -134,13 +134,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/save/high-yield-saving' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | High Yield Saving' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

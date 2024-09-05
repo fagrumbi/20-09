@@ -7,8 +7,7 @@
           <div>
             <h3 class="mt-2 text-3xl font-bold leading-8 tracking-tight text-[#dc7a09] sm:text-4xl">The Impact of Rising
               Rates and Inflation on Your Business</h3>
-            <p class="flex items-center gap-x-2"><img src="https://bastionbanks.com/uploads/1682517645_5841179acbe8ed8e2d8e.png
-                " />Bastion Financial Tips</p>
+            <p class="flex items-center gap-x-2"><img src="@/assets/img/running-business.jpg" /></p>
           </div>
         </div>
         <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
@@ -23,15 +22,15 @@
               </defs>
               <rect width="404" height="384" fill="url(#de316486-4a29-4312-bdfc-fbce2132a2c1)" />
             </svg>
-            <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
+            <!-- <div class="relative mx-auto max-w-prose text-base lg:max-w-none">
               <figure>
                 <div class="aspect-h-7 aspect-w-12 lg:aspect-none">
                   <img class="rounded-lg object-cover object-center shadow-lg"
-                    src="https://bastionbanks.com/templates/bank-pro/learn-and-plan-images/personal-finance-101/unsplash.jpg"
+                    src="@/assets/img/running-business.jpg"
                     alt="Whitney leaning against a railing on a downtown street" width="1184" height="1376">
                 </div>
               </figure>
-            </div>
+            </div> -->
           </div>
           <div class="mt-8 lg:mt-0">
             <div class="mx-auto max-w-prose text-base lg:max-w-none space-y-6">
@@ -120,7 +119,7 @@
         <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
           <div class="relative h-64 overflow-hidden sm:h-80 lg:h-full">
             <img alt=""
-              src="https://bastionbanks.com/templates/bank-pro/learn-and-plan-images/running-a-business/3177%20%20LP%20Digital%20%20Business%20%20Inpage%20%20580x386.jpg"
+              src="@/assets/img/check-check.jpg"
               class="absolute inset-0 h-full w-full object-cover" />
           </div>
 
@@ -264,13 +263,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/learn-and-plan/rising-rates-impact' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Rising Rates Impact' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

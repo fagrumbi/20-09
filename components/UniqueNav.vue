@@ -6,10 +6,10 @@
           <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
               <div class="flex-shrink-0">
-                <!-- <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                <!-- <img class="h-32 w-full" src="@/assets/img/preview.png"
                 alt="Your Company"> -->
-                <nuxt-link to="/"><img src="https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png"
-                    alt="Company Logo" class="" /></nuxt-link>
+                <nuxt-link to="/"><img src="@/assets/img/preview.png"
+                    alt="Company Logo" class="h-32 w-full" /></nuxt-link>
               </div>
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
@@ -178,9 +178,9 @@
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
               <div class="flex h-16 shrink-0 items-center">
-                <!-- <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                <!-- <img class="h-32 w-full" src="@/assets/img/preview.png"
                   alt="Your Company"> -->
-                <img @click="navigateHome" src="https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png"
+                <img @click="navigateHome" src="@/assets/img/preview.png" class="h-32 w-full"
                   alt="Company Logo" />
               </div>
               <nav class="flex flex-1 flex-col">
@@ -252,7 +252,7 @@
           <!-- Separator -->
           <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
             <div class="mt-3">
-              <img src="https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png" />
+              <img src="@/assets/img/preview.png" />
             </div>
             <div class="flex items-center gap-x-4 lg:gap-x-6">
               <!-- Separator -->
@@ -471,8 +471,8 @@
           </svg>
         </div>
         <div class="flex  flex-col justify-center">
-          <nuxt-link to="/user/login" class="flex items-center gap-x-3 justify-center">
-            <img class="h-10" src="https://bastionbanks.com/templates/bank-pro/images/assets/ico-lock.svg"
+          <nuxt-link to="/user/login" class="flex flex-col items-center gap-x-3 justify-center">
+            <img class="h-32 w-full" src="@/assets/img/preview.png"
               alt="Your Company">
             <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-blue-700">Login</h2>
           </nuxt-link>
@@ -532,7 +532,7 @@ export default {
       isOpen: false,
       navigationBarList: [
         {
-          name: 'Home',
+          name: 'Homes',
           key: '',
         },
         {

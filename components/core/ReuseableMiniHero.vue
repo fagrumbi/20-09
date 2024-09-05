@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
-      <img :src="imgUrl" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
+      <img :src="require(`@/assets/img/${imgUrl}`)" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
       <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
         aria-hidden="true">
         <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
@@ -25,6 +25,37 @@
       <h1 class="text-4xl font-thin text-[#dc7a09]">{{ intro }}</h1>
     </section>
   </main>
+
+  <!-- <div class="bg-white">
+    <main>
+      <div>
+        <div class="relative">
+          <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
+          <div class="">
+            <div class="relative shadow-xl sm:overflow-hidden">
+              <div class="absolute inset-0">
+                <img class="h-full w-full object-cover" :src="require(`@/assets/img/${imgUrl}`)" alt="People working on laptops">
+                <div class="absolute inset-0 bg-indigo-700 mix-blend-multiply"></div>
+              </div>
+              <div class="relative px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
+                <h1 class="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                  <span class="block text-white"> {{ title }} </span>
+                </h1>
+                <p class="mx-auto mt-6 max-w-lg text-center text-xl text-indigo-200 sm:max-w-3xl">
+                  {{ desc }}
+                </p>
+                <div class="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
+                    <div class="mt-10 flex items-center justify-center gap-x-6">
+                      <slot name="actions" />
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div> -->
 </template>
 
 <script>

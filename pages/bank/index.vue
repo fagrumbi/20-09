@@ -1,22 +1,25 @@
 <template>
   <main>
-    <ReuseableHeroSection
-      imgUrl="https://bastionbanks.com/templates/bank-pro/bank-images/Citadel_AlkemyX_03546_bank_tony_1600x650.jpg">
+    <ReuseableHeroSection imgUrl="hero2.jpg">
       <template #title>
-        <h1>Bank Accounts, Credit Cards & Digital Tools</h1>
+        Bank Accounts, Credit Cards & Digital Tools
       </template>
       <template #description>
         <p>Check out our safe and secure checking accounts with free debit cards for everyday spending, plus rewarding
           credit cards, and helpful Online & Mobile Banking tools.</p>
       </template>
       <template #actions>
-        <div class="lg:flex items-center px-6 space-y-6 lg:space-y-0">
+        <div class="lg:flex items-center px-6 gap-x-6 space-y-6 lg:space-y-0">
+         <div>
           <button type="button"
-            class="rounded-full w-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">OPEN
-            AN ACCOUNT</button>
-          <button type="button"
+          class="rounded-full w-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">OPEN
+          AN ACCOUNT</button>
+         </div>
+          <div>
+            <button type="button"
             class="rounded-full w-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">SCHEDULE
             AN APPOINTMENT</button>
+          </div>
         </div>
       </template>
     </ReuseableHeroSection>
@@ -121,13 +124,13 @@ export default {
         { hid: 'og:description', property: 'og:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         { hid: 'og:url', property: 'og:url', content: 'https://www.bastonsbanks.com/bank' },
-        { hid: 'og:image', property: 'og:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'og:image', property: 'og:image', content: '@/assets/img/preview.png' },
 
         // Twitter Card meta tags
         { hid: 'twitter:card', name: 'twitter:card', content: '' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bastons Banks | Bank' },
         { hid: 'twitter:description', name: 'twitter:description', content: 'Mobile Banking, Credit Cards, Mortgages, Auto Loan' },
-        { hid: 'twitter:image', name: 'twitter:image', content: 'https://bastionbanks.com/uploads/1682584899_6502d067c95383061f4a.png' },
+        { hid: 'twitter:image', name: 'twitter:image', content: '@/assets/img/preview.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

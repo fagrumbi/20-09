@@ -8,9 +8,9 @@
       </div>
       <div
         class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        <article v-for="(itm, idx) in blogs" :key="idx"
-          class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-          <img :src="itm.imgSrc" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
+        <nuxt-link v-for="(itm, idx) in blogs" :key="idx" :to="itm.path"
+          class="relative isolate flex flex-col justify-end overflow-hidden block rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+          <img :src="require(`@/assets/img/${itm.imgSrc}`)" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
           <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
           <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 
@@ -24,7 +24,7 @@
             </a>
             <p class="text-sm text-gray-200 font-thin">{{ itm.desc }}</p>
           </h3>
-        </article>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -41,28 +41,32 @@ export default {
               you know what you need to claim, and what forms you need to submit? This tax
               checklist makes filing simple. Learn more today!`,
           tag: 'Starting Out',
-          imgSrc: `https://bastionbanks.com/templates/bank-pro/learn-and-plan-images/personal-finance-101/unsplash.jpg`
+          imgSrc: 'checklist.jpg',
+          path: '/learn-and-plan/tax-checklist'
         },
         {
           title: `How to
                       Manage Your Checking`,
           desc: '',
           tag: 'Starting Out',
-          imgSrc: `https://bastionbanks.com/templates/bank-pro/learn-and-plan-images/personal-finance-101/8554477.jpg`
+          imgSrc: 'manage-checking.jpg',
+          path: '/learn-and-plan/manage-checking-account'
         },
         {
           title: `How to Save for
                       Summer Vacation`,
           desc: '',
           tag: 'Starting Out',
-          imgSrc: `https://bastionbanks.com/templates/bank-pro/learn-and-plan-images/personal-finance-101/1116302.jpg`
+          imgSrc: 'group.jpg',
+          path: '/learn-and-plan/summer-saving'
         },
         {
           title: `How
                       Rising Rates and Inflation Impact Businesses`,
           desc: '',
           tag: 'Running a Business',
-          imgSrc: `https://bastionbanks.com/templates/bank-pro/learn-and-plan-images/running-a-business/13418669.jpg`
+          imgSrc: 'running-business.jpg',
+          path: '/learn-and-plan/rising-rates-impact'
         }
       ]
     }
