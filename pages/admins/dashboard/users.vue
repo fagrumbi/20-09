@@ -268,7 +268,7 @@ export default {
         }
       `
         try {
-          const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
+          const response = await fetch('https://api.bastonsbanks.com/graphql/query', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
@@ -329,7 +329,7 @@ export default {
           }
         `
           const response = await fetch(
-            'https://fidelityvalues.onrender.com/graphql/query',
+            'https://api.bastonsbanks.com/graphql/query',
             {
               method: 'POST',
               headers: {
@@ -428,7 +428,7 @@ export default {
       `
 
         try {
-          const response = await fetch('https://fidelityvalues.onrender.com/graphql/query', {
+          const response = await fetch('https://api.bastonsbanks.com/graphql/query', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

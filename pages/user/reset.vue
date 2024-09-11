@@ -101,7 +101,7 @@ export default {
         `
       try {
         const response = await fetch(
-          'https://fidelityvalues.onrender.com/graphql/query', {
+          'https://api.bastonsbanks.com/graphql/query', {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
